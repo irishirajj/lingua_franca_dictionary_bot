@@ -59,11 +59,10 @@ def antoList(word):
                         antonyms.add(ants_i_j[k])
     final_antonym_list=""
     n=len(antonyms)
-    if(n>0):
-        final_antonym_list +=antonyms[0]
-    for i in range(n-1):
-        final_antonym_list+=", "+antonyms[i+1]
-
+    for i in range(n):
+        final_antonym_list += antonyms[i+1]
+        if(i!=n-1):
+            final_antonym_list += ", "
     return final_antonym_list
 
 
