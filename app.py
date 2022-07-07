@@ -125,13 +125,12 @@ def synoList(word):
             mysyno += "\n"
     return mysyno
 
+
 def find(update,context):
     msg = f"{update.message.text}".lower()
     word=msg[6:]
-    strng, audiourl = findHelper(word)
-    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
-                               parse_mode=telegram.ParseMode.HTML)
+    findHelper(word)
+
 
 
 def findHelper(word):
@@ -169,7 +168,9 @@ def findHelper(word):
     strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + example
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
 
-    return strng, audiourl
+    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+    update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
+                               parse_mode=telegram.ParseMode.HTML)
 
 
 
@@ -216,8 +217,8 @@ def main():
     dp.add_handler(CommandHandler("anto", anto))
     dp.add_handler(CommandHandler("syno", syno))
     dp.add_handler(CommandHandler("find", find))
-    dp.add_handler(CommandHandler("search", find))
-    dp.add_handler(CommandHandler("look", find))
+    #dp.add_handler(CommandHandler("search", find))
+    #dp.add_handler(CommandHandler("look", find))
 
     dp.add_handler(CommandHandler("details", details))
 
