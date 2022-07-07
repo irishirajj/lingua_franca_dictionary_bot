@@ -8,6 +8,8 @@ from string import punctuation
 import telegram.ext
 
 TOKEN = os.environ.get("TELEGRAM_ID")
+app_id = os.environ.get("OXFORD_APP_ID")
+app_key = os.environ.get("OXFORD_APP_KEY")
 
 
 def start(update, context):
@@ -73,6 +75,55 @@ def antoList(word):
         final_antonym_list += antonym +", "
     return final_antonym_list
 
+def syno(update, context):
+    msg = f"{update.message.text}"
+    word = msg[6:]
+    synonyms = synoList(word)
+    if (len(synonyms) == 0):
+        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        return ""
+    word = "<b>" + word[0].upper() + word[1:] + "</b>"
+    strng = u"\U0001F1EE\U0001F1F3" + " " + word + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms
+    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+
+def synoList(word):
+    language = 'en-gb'
+    strictMatch = 'false'
+    fields2 = 'synonyms'
+    oxTheUrl = 'https://od-api.oxforddictionaries.com:443/api/v2/thesaurus/' + language + '/' + word.lower() + '?fields=' + fields2 + '&strictMatch=' + strictMatch;
+    r = requests.get(oxTheUrl, headers={'app_id': app_id, 'app_key': app_key})
+    # print(r.status_code)
+    if (r.status_code != 200):
+        return ""
+    json_load = r.json()
+    list = json_load['results'][0]["lexicalEntries"][0]['entries'][0]['senses'][0]
+    synonyms = list['synonyms']
+    mysyno = "1. "
+    length = len(synonyms)
+    for i in range(length):
+        if (i == 0):
+            mysyno += "<b>" + synonyms[i]['text'] + "</b>, "
+        elif (i == length - 1):
+            mysyno += synonyms[i]['text'] + " "
+        else:
+            mysyno += synonyms[i]['text'] + ", "
+    mysyno += "\n"
+    if (list.__contains__('subsenses')):
+        newlist = list['subsenses']
+        listLength = len(newlist)
+        for i in range(listLength):
+            mysyno += str(i + 2) + ". "
+            synonyms = newlist[i]['synonyms']
+            length = len(synonyms)
+            for j in range(length):
+                if (j == 0):
+                    mysyno += "<b>" + synonyms[j]['text'] + "</b>, "
+                elif (j == length - 1):
+                    mysyno += synonyms[j]['text'] + " "
+                else:
+                    mysyno += synonyms[j]['text'] + ", "
+            mysyno += "\n"
+    return mysyno
 
 def details(update, context):
     context.bot.send_message(update.message.chat.id, str(update))
@@ -94,6 +145,8 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("anto", anto))
+    dp.add_handler(CommandHandler("syno", syno))
+
     dp.add_handler(CommandHandler("details", details))
 
     dp.add_handler(MessageHandler(Filters.text, mimic))
