@@ -3,7 +3,7 @@ from telegram.ext import CommandHandler, MessageHandler,Filters
 import os
 from string import punctuation
 import telegram.ext
-import requests
+
 TOKEN=os.environ.get("TELEGRAM_ID")
 def start(update,context):
     yourname=update.message.chat.first_name
