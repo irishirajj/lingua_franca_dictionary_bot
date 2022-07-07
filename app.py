@@ -129,11 +129,11 @@ def synoList(word):
 def find(update,context):
     msg = f"{update.message.text}".lower()
     word=msg[6:]
-    findHelper(word)
+    findHelper(update,word)
 
 
 
-def findHelper(word):
+def findHelper(update,word):
     # Access the dictionary Merriam Webster dictionary for definition and pronunciation
     urldict = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key=1f6a028a-e36e-4742-86f9-d087462e185e"
     meandict = requests.get(urldict).json()
@@ -162,8 +162,8 @@ def findHelper(word):
         shortdef += shortDefinitions[i]+"; "
     parts_of_speech = meandict[0]['fl']
     example = giveOneExample(word)
-    mysyno=synoList(word)
-    ants=antoList(word)
+    mysyno=synoList(word.lower())
+    ants=antoList(word.lower())
 
     strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + example
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
@@ -175,8 +175,6 @@ def findHelper(word):
 
 
 def giveOneExample(word):
-    app_id = 'fc32e4d5'
-    app_key = 'bd2a0471f2b19c491ce8cd4edeebf250'
     language = 'en-gb'
     word_id = word
     strictMatch = 'false'
