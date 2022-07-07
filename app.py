@@ -83,6 +83,7 @@ def main():
     ###################   Handlers :
     dp.add_handler(CommandHandler("start",start))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("anto",anto))
     dp.add_handler(CommandHandler("details", details))
 
     dp.add_handler(MessageHandler(Filters.text,mimic))
