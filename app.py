@@ -34,6 +34,7 @@ def anto(update,context):
         return ""
     word = "<b>"+word[0].upper()+word[1:]+"</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + word + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
 def antoList(word):
     url = f"https://dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key=06a00f95-9843-4f0f-9378-dec4f507c81b"
