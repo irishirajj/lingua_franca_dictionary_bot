@@ -64,11 +64,13 @@ def antoList(word):
                     for k in range(len_ants_i_j):
                         antonyms.add(ants_i_j[k])
     final_antonym_list = ""
-    n = len(antonyms)
-    for i in range(n):
-        final_antonym_list += antonyms[i + 1]
-        if i != n - 1:
-            final_antonym_list += ", "
+    #n = len(antonyms)
+    #for i in range(n):
+    #    final_antonym_list += antonyms[i + 1]
+    #    if i != n - 1:
+    #        final_antonym_list += ", "
+    for antonym in antonyms:
+        final_antonym_list += antonym
     return final_antonym_list
 
 
@@ -81,7 +83,7 @@ def mimic(update, context):
 
 
 def error(update, context):
-    context.bot.send_message(update.message.chat.it, "OOps! Error encountered")
+    context.bot.send_message(update.message.chat.id, "OOps! Error encountered")
 
 
 def main():
