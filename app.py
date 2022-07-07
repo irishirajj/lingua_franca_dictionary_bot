@@ -129,11 +129,6 @@ def synoList(word):
 def find(update,context):
     msg = f"{update.message.text}".lower()
     word=msg[6:]
-    findHelper(update,word)
-
-
-
-def findHelper(update,word):
     # Access the dictionary Merriam Webster dictionary for definition and pronunciation
     urldict = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key=1f6a028a-e36e-4742-86f9-d087462e185e"
     meandict = requests.get(urldict).json()
