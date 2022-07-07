@@ -24,7 +24,7 @@ def help(update, context):
 
     /start -> Welcome Message
     /help -> This Message
-    /find /search /get -> Used to find the meaning, examples, synonyms and antonyms of any word.
+    /find /search /look -> Used to find the meaning, examples, synonyms and antonyms of any word.
     /syno -> Used to search the synonyms of any word.
     /anto -> Used to search the antonyms of any word.
     /explain -> Used to search all data about a word.
@@ -125,6 +125,75 @@ def synoList(word):
             mysyno += "\n"
     return mysyno
 
+def find(update,context):
+    msg = f"{update.message.text}".lower()
+    word=msg[6:]
+    strng = findHelper(word)
+    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+    update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
+                               parse_mode=telegram.ParseMode.HTML)
+
+
+def findHelper(word):
+    # Access the dictionary Merriam Webster dictionary for definition and pronunciation
+    urldict = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{msg[6:]}?key=1f6a028a-e36e-4742-86f9-d087462e185e"
+    meandict = requests.get(urldict).json()
+    if (len(meandict) == 0):
+        return ""
+    if (type(meandict[0]) == str):
+        return ""
+    audioname = meandict[0]['hwi']['prs'][0]['sound']['audio']
+    subdir = ""
+    if (audioname[0:2] == "bix"):
+        subdir = "bix"
+    elif (audioname[0:1] == "gg"):
+        subdir = "gg"
+    elif (audioname[0].isdigit() or audioname[0] in punctuation):
+        subdir = "number"
+    else:
+        subdir = audioname[0]
+    audiourl = f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
+
+    word = "<b>" + word[0].upper() + word[1:].lower() + "</b>"
+
+    shortDefinitions=meandict[0]['shortdef']
+    len_shortDefinitions = len(shortDefinitions)
+    shortdef=""
+    for i in range(len_shortDefinitions):
+        shortdef += shortDefinitions[i]+"; "
+    parts_of_speech = meandict[0]['fl']
+    example = giveOneExample(msg[6:])
+    mysyno=synoList(word)
+    ants=antoList(word)
+
+    strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + example
+    strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
+
+    return strng
+
+
+
+def giveOneExample(word):
+    app_id = 'fc32e4d5'
+    app_key = 'bd2a0471f2b19c491ce8cd4edeebf250'
+     language = 'en-gb'
+    word_id = word
+    strictMatch = 'false'
+    test=f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+    r=requests.get(test, headers = {'app_id': app_id, 'app_key': app_key})
+    #print(r.status_code)
+    if(r.status_code!=200):
+        return ""
+    testr=r.json()
+    le=testr['results'][0]['lexicalEntries']
+    le_0=le[0]
+    sense_0=le_0['entries'][0]['senses'][0]
+    if(sense_0.__contains__('examples')):
+        example=sense_0['examples'][0]['text']
+        return example
+    return ""
+
+
 def details(update, context):
     context.bot.send_message(update.message.chat.id, str(update))
 
@@ -146,6 +215,9 @@ def main():
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("anto", anto))
     dp.add_handler(CommandHandler("syno", syno))
+    dp.add_handler(CommandHandler("find", find))
+    dp.add_handler(CommandHandler("search", find))
+    dp.add_handler(CommandHandler("look", find))
 
     dp.add_handler(CommandHandler("details", details))
 
