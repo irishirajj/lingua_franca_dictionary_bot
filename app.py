@@ -70,7 +70,7 @@ def antoList(word):
     #    if i != n - 1:
     #        final_antonym_list += ", "
     for antonym in antonyms:
-        final_antonym_list += antonym
+        final_antonym_list += antonym +", "
     return final_antonym_list
 
 
