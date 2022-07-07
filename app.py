@@ -7,12 +7,10 @@ def start(update,context):
     msg="Hi"+yourname+"! Welcome to Lingua Franca Vocab Bot"
     context.bot.send_message(update.message.chat.id,msg)
 def details(update,context):
-    context.bot.send_message(update.message.chat.id,update.message.text)
+    context.bot.send_message(update.message.chat.id,str(update))
 
 def mimic(update,context):
     context.bot.send_message(update.message.chat.id,update.message.text)
-
-
 
 def error(update,context):
     context.bot.send_message(update.message.chat.it, "OOps! Error encountered")
