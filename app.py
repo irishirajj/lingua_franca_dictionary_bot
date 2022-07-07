@@ -128,7 +128,7 @@ def synoList(word):
 def find(update,context):
     msg = f"{update.message.text}".lower()
     word=msg[6:]
-    strng = findHelper(word)
+    strng, audiourl = findHelper(word)
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
     update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
                                parse_mode=telegram.ParseMode.HTML)
@@ -136,7 +136,7 @@ def find(update,context):
 
 def findHelper(word):
     # Access the dictionary Merriam Webster dictionary for definition and pronunciation
-    urldict = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{msg[6:]}?key=1f6a028a-e36e-4742-86f9-d087462e185e"
+    urldict = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key=1f6a028a-e36e-4742-86f9-d087462e185e"
     meandict = requests.get(urldict).json()
     if (len(meandict) == 0):
         return ""
@@ -162,21 +162,21 @@ def findHelper(word):
     for i in range(len_shortDefinitions):
         shortdef += shortDefinitions[i]+"; "
     parts_of_speech = meandict[0]['fl']
-    example = giveOneExample(msg[6:])
+    example = giveOneExample(word)
     mysyno=synoList(word)
     ants=antoList(word)
 
     strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + example
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
 
-    return strng
+    return strng, audiourl
 
 
 
 def giveOneExample(word):
     app_id = 'fc32e4d5'
     app_key = 'bd2a0471f2b19c491ce8cd4edeebf250'
-     language = 'en-gb'
+    language = 'en-gb'
     word_id = word
     strictMatch = 'false'
     test=f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
