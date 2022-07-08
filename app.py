@@ -170,7 +170,8 @@ def find(update,context):
     ants=antoList(word)
     example = giveOneExample(word)
 
-    update.message.reply_text(mysyno)
+    update.message.reply_text(mysyno,parse_mode=telegram.ParseMode.HTML)
+    return
     update.message.reply_text(ants)
     update.message.reply_text(example)
     update.message.reply_text(parts_of_speech)
@@ -184,7 +185,7 @@ def find(update,context):
 
 
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    #gupdate.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
+    #update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
                                #parse_mode=telegram.ParseMode.HTML)
 
 
