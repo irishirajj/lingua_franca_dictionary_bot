@@ -15,7 +15,7 @@ app_key = os.environ.get("OXFORD_APP_KEY")
 merriam_dict_key=os.environ.get("MERRIAM_DICT_KEY")
 
 def start(update, context):
-    yourname = update.message.chat.first_name
+    yourname = update.message.from_user.first_name
     msg = "Hello " + yourname + "! Welcome to Lingua Franca Dictionary Bot"
     context.bot.send_message(update.message.chat.id, msg)
 
