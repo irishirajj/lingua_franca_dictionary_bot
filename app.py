@@ -7,13 +7,7 @@ import requests
 from string import punctuation
 import telegram.ext
 
-from telegram.bot import Bot, BotCommand
-command = [BotCommand("find search look","search meaning, examples, anto and syno"),
-           BotCommand("anto", "finds the antonyms"),
-           BotCommand("syno", "finds the antonyms"),
-           BotCommand("explain", "finds all about the given word")]
-bot = Bot("bot_id")
-bot.set_my_commands(command)
+
 
 TOKEN = os.environ.get("TELEGRAM_ID")
 app_id = os.environ.get("OXFORD_APP_ID")
