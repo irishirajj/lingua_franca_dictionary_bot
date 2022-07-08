@@ -169,6 +169,7 @@ def find(update,context):
     mysyno=synoList(word)
     ants=antoList(word)
     example = giveOneExample(word)
+    update.message.reply_text("faks;ldjfa;ldjf;ldsjfaodijfo", parse_mode=telegram.ParseMode.HTML)
     return
     update.message.reply_text(mysyno,parse_mode=telegram.ParseMode.HTML)
 
