@@ -165,7 +165,7 @@ def find(update,context):
     for i in range(len_shortDefinitions):
         shortdef += shortDefinitions[i]+"; "
     parts_of_speech = meandict[0]['fl']
-
+    return
     mysyno=synoList(word)
     ants=antoList(word)
     example = giveOneExample(word)
