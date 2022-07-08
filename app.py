@@ -53,6 +53,24 @@ def find(update, context):
     parts_of_speech=""
     if (merriam_dict_list_0.__contains__('fl')):
         parts_of_speech=merriam_dict_list_0['fl']
+    audioname=""
+    audiourl=""
+    if (merriam_dict_list_0.__contains__('hwi')):
+        hwi=merriam_dict_list_0['hwi']
+        if (hwi.__contains__('prs')):
+            sound=hwi["prs"][0]
+            audioname=sound["audio"]
+    subdir = ""
+    if(len(audioname)!=0):
+        if (audioname[0:2] == "bix"):
+            subdir = "bix"
+        elif (audioname[0:1] == "gg"):
+            subdir = "gg"
+        elif (audioname[0].isdigit() or audioname[0] in punctuation):
+            subdir = "number"
+        else:
+            subdir = audioname[0]
+        audiourl=f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
 
 
     synonyms=synoList(word)
@@ -61,6 +79,8 @@ def find(update, context):
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+                               parse_mode=telegram.ParseMode.HTML)
 
 
 def anto(update, context):
