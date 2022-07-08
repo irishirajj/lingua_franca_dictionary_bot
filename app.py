@@ -297,7 +297,7 @@ def find(update, context):
         hwi=merriam_dict_list_0['hwi']
         if (hwi.__contains__('prs')):
             prs=hwi['prs']
-            int prs_len=len(prs)
+            prs_len=len(prs)
             for i in range(prs_len):
                 if(prs[i].__contains__('sound')):
                     sound=hwi['prs'][i]["sound"]
@@ -320,7 +320,7 @@ def find(update, context):
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    if(len(audiurl)!=0):
+    if(len(audiourl)!=0):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                parse_mode=telegram.ParseMode.HTML)
 
