@@ -196,12 +196,12 @@ def giveOneExample(word):
     return ""
 
 
-def details(update, context):
-    context.bot.send_message(update.message.chat.id, str(update))
+#def details(update, context):
+ #   context.bot.send_message(update.message.chat.id, str(update))
 
 
-def mimic(update, context):
-    context.bot.send_message(update.message.chat.id, update.message.text)
+#def mimic(update, context):
+  #  context.bot.send_message(update.message.chat.id, update.message.text)
 
 
 def error(update, context):
@@ -218,12 +218,12 @@ def main():
     dp.add_handler(CommandHandler("anto", anto))
     dp.add_handler(CommandHandler("syno", syno))
     dp.add_handler(CommandHandler("find", find))
-    #dp.add_handler(CommandHandler("search", find))
-    #dp.add_handler(CommandHandler("look", find))
+    dp.add_handler(CommandHandler("search", find))
+    dp.add_handler(CommandHandler("look", find))
 
-    dp.add_handler(CommandHandler("details", details))
+    #dp.add_handler(CommandHandler("details", details))
 
-    dp.add_handler(MessageHandler(Filters.text, mimic))
+    #dp.add_handler(MessageHandler(Filters.text, mimic))
 
     dp.add_error_handler(error)
 
