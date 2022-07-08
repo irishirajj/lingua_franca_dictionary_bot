@@ -10,7 +10,7 @@ import telegram.ext
 TOKEN = os.environ.get("TELEGRAM_ID")
 app_id = os.environ.get("OXFORD_APP_ID")
 app_key = os.environ.get("OXFORD_APP_KEY")
-merriam_dict_key=os.environ.get(MERRIAM_DICT_KEY)
+merriam_dict_key=os.environ.get("MERRIAM_DICT_KEY")
 
 def start(update, context):
     yourname = update.message.chat.first_name
