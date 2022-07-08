@@ -126,7 +126,7 @@ def synoList(word):
     return mysyno
 
 def findAudioUrl(jeasons,word):
-    audioname = meandict[0]['hwi']['prs'][0]['sound']['audio']
+    audioname = jeasons[0]['hwi']['prs'][0]['sound']['audio']
     subdir = ""
     if (audioname[0:2] == "bix"):
         subdir = "bix"
@@ -173,8 +173,8 @@ def find(update,context):
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
 
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    #update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
-                               parse_mode=telegram.ParseMode.HTML)
+    #gupdate.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
+                               #parse_mode=telegram.ParseMode.HTML)
 
 
 
