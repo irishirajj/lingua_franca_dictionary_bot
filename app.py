@@ -169,7 +169,7 @@ def find(update,context):
     mysyno=synoList(word)
     ants=antoList(word)
     example = giveOneExample(word)
-    update.message.reply_text("YE LE LE", parse_mode=telegram.ParseMode.HTML)
+    update.message.reply_text("YE LEs LE", parse_mode=telegram.ParseMode.HTML)
     return
     strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n"+example
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
