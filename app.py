@@ -289,7 +289,7 @@ def giveOneExample(word):
     sense_0=le_0['entries'][0]['senses'][0]
     if(sense_0.__contains__('examples')):
         example=sense_0['examples'][0]['text']
-        return example
+        return example[0].upper()+example[1:]
     return ""
 
 
