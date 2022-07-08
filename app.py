@@ -43,11 +43,20 @@ def find(update, context):
     if (type(merriam_dict_list[0]) == str):
         update.message.reply_text("Sorry! The word was not found in our dictionary.")
         return
+    merriam_dict_list_0= merriam_dict_list[0]
+    definition=""
+    if (merriam_dict_list_0.__contains__('shortdef')):
+        definitions=merriam_dict_list_0['shortdef']
+        definitions_len=len(definitions)
+        for i in range(definitions_len):
+            definition+=definitions[i]+"; "
+
+
     synonyms=synoList(word)
     antonyms = antoList(word)
     oneExample=giveOneExample(word)
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
-    strng = u"\U0001F1EE\U0001F1F3" + " " + head+" :"+ "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    strng = u"\U0001F1EE\U0001F1F3" + " " + head+" :"+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
 
