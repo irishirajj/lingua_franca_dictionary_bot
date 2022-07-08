@@ -141,6 +141,10 @@ def find(update,context):
     if (type(meandict[0]) == str):
         update.message.reply_text("Sorry! The word was not found in our dictionary.")
         return
+
+    example = giveOneExample(word)
+    update.message.reply_text(example, parse_mode=telegram.ParseMode.HTML)
+    return
     audioname = meandict[0]['hwi']['prs'][0]['sound']['audio']
     subdir = ""
     if (audioname[0:2] == "bix"):
@@ -154,9 +158,10 @@ def find(update,context):
     audiourl = f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
 
     word = "<b>" + word[0].upper() + word[1:].lower() + "</b>"
-    example = giveOneExample(word)
-    update.message.reply_text(example, parse_mode=telegram.ParseMode.HTML)
-    return
+
+
+
+
     shortDefinitions=meandict[0]['shortdef']
     len_shortDefinitions = len(shortDefinitions)
     shortdef=""
