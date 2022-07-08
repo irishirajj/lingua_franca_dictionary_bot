@@ -33,7 +33,100 @@ def help(update, context):
     /contact -> For suggestions and bug reports 
     """)
 
+def searchall(update, context):
+    find3(update, context)
+    msg = f"{update.message.text}".lower()
+    app_id = 'fc32e4d5'
+    app_key = 'bd2a0471f2b19c491ce8cd4edeebf250'
+    language = 'en-gb'
+    word_id = msg[11:]
+    strictMatch = 'false'
+    test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+    r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+    # print(r.status_code)
+    if (r.status_code != 200):
+        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        return
+    testr = r.json()
+    le = testr['results'][0]['lexicalEntries']
+    for i in range(len(le)):  # i is representing the number of the lexical entry
+        le_i = le[i]
+        pos = le_i['lexicalCategory']['text']
+        entries = le_i['entries']
+        senses = entries[0]['senses']
+        for j in range(len(senses)):
+            sense_j = senses[j]
 
+            definition = ""
+            if (sense_j.__contains__('definitions')):
+                definitions = sense_j['definitions']
+                for k in range(len(definitions)):
+                    definition += definitions[k] + "; "
+
+            example = ""
+            if (sense_j.__contains__('examples')):
+                examples = sense_j['examples']
+                for k in range(len(examples)):
+                    example += str(k + 1) + ". "
+                    example += examples[k]['text'][0].upper()+examples[k]['text'][1:].lower() + "\n"
+
+            synonym = ""
+            if (sense_j.__contains__('synonyms')):
+                synonyms = sense_j['synonyms']
+                for k in range(len(synonyms)):
+                    synonym += synonyms[k]['text'] + "; "
+
+            word = "<b>" + msg[11].upper() + msg[12:].lower() + "</b>"
+            strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+
+def find3(update, context):
+    msg = f"{update.message.text}"
+    word=msg[11:].lower()
+    merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
+    merriam_dict_list = requests.get(merriam_url).json()
+    if (len(merriam_dict_list) == 0):
+        return
+    if (type(merriam_dict_list[0]) == str):
+        return
+    merriam_dict_list_0= merriam_dict_list[0]
+    definition=""
+    if (merriam_dict_list_0.__contains__('shortdef')):
+        definitions=merriam_dict_list_0['shortdef']
+        definitions_len=len(definitions)
+        for i in range(definitions_len):
+            definition+=definitions[i]+"; "
+    parts_of_speech=""
+    if (merriam_dict_list_0.__contains__('fl')):
+        parts_of_speech=merriam_dict_list_0['fl']
+
+    audioname=""
+    audiourl=""
+    if (merriam_dict_list_0.__contains__('hwi')):
+        hwi=merriam_dict_list_0['hwi']
+        if (hwi.__contains__('prs')):
+            sound=hwi["prs"][0]['sound']
+            audioname=sound["audio"]
+    if(len(audioname)!=0):
+        if (audioname[0:2] == "bix"):
+            subdir = "bix"
+        elif (audioname[0:1] == "gg"):
+            subdir = "gg"
+        elif (audioname[0].isdigit() or audioname[0] in punctuation):
+            subdir = "number"
+        else:
+            subdir = audioname[0]
+        audiourl=f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
+
+
+    synonyms=synoList(word)
+    antonyms = antoList(word)
+    oneExample=giveOneExample(word)
+    head = "<b>" + word[0].upper() + word[1:] + "</b>"
+    strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+                               parse_mode=telegram.ParseMode.HTML)
 def explain(update, context):
     find2(update, context)
     msg = f"{update.message.text}".lower()
@@ -362,12 +455,12 @@ def main():
     dp.add_handler(CommandHandler("anto", anto))
     dp.add_handler(CommandHandler("syno", syno))
     dp.add_handler(CommandHandler("find", find))
-    dp.add_handler(CommandHandler("search", find))
+    dp.add_handler(CommandHandler("search", search))
     dp.add_handler(CommandHandler("look", find))
     dp.add_handler(CommandHandler("explain", explain))
     dp.add_handler(CommandHandler("findall", explain))
     dp.add_handler(CommandHandler("lookall", explain))
-    dp.add_handler(CommandHandler("searchall", explain))
+    dp.add_handler(CommandHandler("searchall", searchall))
 
     #dp.add_handler(CommandHandler("details", details))
 
