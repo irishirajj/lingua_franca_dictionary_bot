@@ -1,4 +1,4 @@
-from telegram.ext import Updater
+from telegram.ext import Updater, filters
 from telegram.ext import CommandHandler, MessageHandler, Filters
 import os
 import json
@@ -18,7 +18,9 @@ def start(update, context):
     yourname = update.message.from_user.first_name
     msg = "Hello " + yourname + "! Welcome to Lingua Franca Dictionary Bot"
 
-    context.ext.filters.ChatType.PRIVATE.bot.send_message(update.message.chat.id, msg)
+    #context.ext.filters.ChatType.PRIVATE.bot.send_message(update.message.chat.id, msg)
+    PRIVATE = filters.ChatType.PRIVATE
+    PRIVATE.bot.send_message(update.message.chat.id,msg)
 
 
 def help(update, context):
