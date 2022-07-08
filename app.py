@@ -50,13 +50,16 @@ def find(update, context):
         definitions_len=len(definitions)
         for i in range(definitions_len):
             definition+=definitions[i]+"; "
+    parts_of_speech=""
+    if (merriam_dict_list_0.__contains__('fl')):
+        parts_of_speech=merriam_dict_list_0['fl']
 
 
     synonyms=synoList(word)
     antonyms = antoList(word)
     oneExample=giveOneExample(word)
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
-    strng = u"\U0001F1EE\U0001F1F3" + " " + head+" :"+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
 
