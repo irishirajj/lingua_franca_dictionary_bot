@@ -69,7 +69,7 @@ def explain(update, context):
                 examples = sense_j['examples']
                 for k in range(len(examples)):
                     example += str(k + 1) + ". "
-                    example += examples[k]['text'] + "\n"
+                    example += examples[k]['text'][0].upper()+examples[k]['text'][1:].lower() + "\n"
 
             synonym = ""
             if (sense_j.__contains__('synonyms')):
