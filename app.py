@@ -125,6 +125,19 @@ def synoList(word):
             mysyno += "\n"
     return mysyno
 
+def findAudioUrl(jeasons,word):
+    audioname = meandict[0]['hwi']['prs'][0]['sound']['audio']
+    subdir = ""
+    if (audioname[0:2] == "bix"):
+        subdir = "bix"
+    elif (audioname[0:1] == "gg"):
+        subdir = "gg"
+    elif ((audioname[0].isdigit()) or (audioname[0] in punctuation)):
+        subdir = "number"
+    else:
+        subdir = audioname[0]
+    audiourl = f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
+
 
 def find(update,context):
     msg = f"{update.message.text}"
@@ -142,25 +155,9 @@ def find(update,context):
         update.message.reply_text("Sorry! The word was not found in our dictionary.")
         return
 
-    example = giveOneExample(word)
-    update.message.reply_text(example, parse_mode=telegram.ParseMode.HTML)
-    return
-    audioname = meandict[0]['hwi']['prs'][0]['sound']['audio']
-    subdir = ""
-    if (audioname[0:2] == "bix"):
-        subdir = "bix"
-    elif (audioname[0:1] == "gg"):
-        subdir = "gg"
-    elif ( (audioname[0].isdigit()) or (audioname[0] in punctuation) ):
-        subdir = "number"
-    else:
-        subdir = audioname[0]
-    audiourl = f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
+    #audiourl=findAudioUrl(meandict,word)
 
     word = "<b>" + word[0].upper() + word[1:].lower() + "</b>"
-
-
-
 
     shortDefinitions=meandict[0]['shortdef']
     len_shortDefinitions = len(shortDefinitions)
@@ -171,12 +168,12 @@ def find(update,context):
 
     mysyno=synoList(word)
     ants=antoList(word)
-
-    strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n"
+    example = giveOneExample(word)
+    strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n"+example
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
 
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
+    #update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
                                parse_mode=telegram.ParseMode.HTML)
 
 
