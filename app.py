@@ -170,10 +170,10 @@ def find(update,context):
     ants=antoList(word)
     example = giveOneExample(word)
 
-
-    strng = u"\U0001F1EE\U0001F1F3" + " " + word + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + mysyno + "\n"+"anto:"+"\n"+ants
-    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-
+    update.message.reply_text(mysyno)
+    update.message.reply_text(ants)
+    update.message.reply_text(example)
+    update.message.reply_text(parts_of_speech)
     update.message.reply_text("LIFE IS A RACE and YOU ARE ANDA", parse_mode=telegram.ParseMode.HTML)
     return
 
