@@ -154,18 +154,19 @@ def find(update,context):
     audiourl = f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
 
     word = "<b>" + word[0].upper() + word[1:].lower() + "</b>"
-
+    example = giveOneExample(word)
+    update.message.reply_text(example, parse_mode=telegram.ParseMode.HTML)
+    return
     shortDefinitions=meandict[0]['shortdef']
     len_shortDefinitions = len(shortDefinitions)
     shortdef=""
     for i in range(len_shortDefinitions):
         shortdef += shortDefinitions[i]+"; "
     parts_of_speech = meandict[0]['fl']
-    example = giveOneExample(word)
+
     mysyno=synoList(word)
     ants=antoList(word)
-    update.message.reply_text(example, parse_mode=telegram.ParseMode.HTML)
-    return
+
     strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n"
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
 
