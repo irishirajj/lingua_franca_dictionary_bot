@@ -172,7 +172,7 @@ def find(update,context):
 
     strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n"+example
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
-    update.message.reply_text("LIFE IS A RACE and YOU ARE ANDA, parse_mode=telegram.ParseMode.HTML)
+    update.message.reply_text("LIFE IS A RACE and YOU ARE ANDA", parse_mode=telegram.ParseMode.HTML)
     return
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
     #gupdate.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
