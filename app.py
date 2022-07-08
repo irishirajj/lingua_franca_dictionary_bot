@@ -10,7 +10,7 @@ import telegram.ext
 TOKEN = os.environ.get("TELEGRAM_ID")
 app_id = os.environ.get("OXFORD_APP_ID")
 app_key = os.environ.get("OXFORD_APP_KEY")
-
+merriam_dict_key=os.environ.get(MERRIAM_DICT_KEY)
 
 def start(update, context):
     yourname = update.message.chat.first_name
@@ -34,13 +34,22 @@ def help(update, context):
 
 def find(update, context):
     msg = f"{update.message.text}"
-    word=msg[6:]
+    word=msg[6:].lower()
+    merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
+    merriam_dict_list = requests.get(merriam_url).json()
+    if (len(merriam_dict_list) == 0):
+        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        return
+    if (type(merriam_dict_list[0]) == str):
+        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        return
     synonyms=synoList(word)
     antonyms = antoList(word)
     oneExample=giveOneExample(word)
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head+" :"+ "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+
 
 def anto(update, context):
     msg = f"{update.message.text}"
