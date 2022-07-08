@@ -258,8 +258,12 @@ def search(update, context):
     if (merriam_dict_list_0.__contains__('hwi')):
         hwi = merriam_dict_list_0['hwi']
         if (hwi.__contains__('prs')):
-            sound = hwi["prs"][0]['sound']
-            audioname = sound["audio"]
+            prs = hwi['prs']
+            prs_len = len(prs)
+            for i in range(prs_len):
+                if (prs[i].__contains__('sound')):
+                    sound = hwi['prs'][i]["sound"]
+                    audioname = sound["audio"]
     if (len(audioname) != 0):
         if (audioname[0:2] == "bix"):
             subdir = "bix"
@@ -277,8 +281,9 @@ def search(update, context):
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
-                               parse_mode=telegram.ParseMode.HTML)
+    if (len(audiourl) != 0):
+        update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+                                   parse_mode=telegram.ParseMode.HTML)
 def find(update, context):
     msg = f"{update.message.text}"
     word=msg[6:].lower()
