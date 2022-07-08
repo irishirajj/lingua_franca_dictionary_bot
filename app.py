@@ -127,22 +127,27 @@ def synoList(word):
 
 
 def find(update,context):
-    msg = f"{update.message.text}".lower()
-    word=msg[6:]
+    msg = f"{update.message.text}"
+    word = msg[6:]
+    word=word.lower()
     # Access the dictionary Merriam Webster dictionary for definition and pronunciation
     urldict = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key=1f6a028a-e36e-4742-86f9-d087462e185e"
-    meandict = requests.get(urldict).json()
+    #url    = f"https://dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key=06a00f95-9843-4f0f-9378-dec4f507c81b"
+    r = requests.get(urldict)
+    meandict=r.json()
     if (len(meandict) == 0):
-        return ""
+        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        return
     if (type(meandict[0]) == str):
-        return ""
+        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        return
     audioname = meandict[0]['hwi']['prs'][0]['sound']['audio']
     subdir = ""
     if (audioname[0:2] == "bix"):
         subdir = "bix"
     elif (audioname[0:1] == "gg"):
         subdir = "gg"
-    elif (audioname[0].isdigit() or audioname[0] in punctuation):
+    elif ( (audioname[0].isdigit()) or (audioname[0] in punctuation) ):
         subdir = "number"
     else:
         subdir = audioname[0]
@@ -156,11 +161,11 @@ def find(update,context):
     for i in range(len_shortDefinitions):
         shortdef += shortDefinitions[i]+"; "
     parts_of_speech = meandict[0]['fl']
-    example = giveOneExample(word)
-    mysyno=synoList(word.lower())
-    ants=antoList(word.lower())
+    #example = giveOneExample(word)
+    mysyno=synoList(word)
+    ants=antoList(word)
 
-    strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + example
+    strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" +
     strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
 
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
