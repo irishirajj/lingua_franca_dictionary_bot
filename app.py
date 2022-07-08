@@ -19,8 +19,9 @@ def start(update, context):
     msg = "Hello " + yourname + "! Welcome to Lingua Franca Dictionary Bot"
 
     #context.ext.filters.ChatType.PRIVATE.bot.send_message(update.message.chat.id, msg)
-    PRIVATE = filters.ChatType.PRIVATE
-    PRIVATE.bot.send_message(update.message.chat.id,msg)
+    #PRIVATE = filters.ChatType.PRIVATE
+    #PRIVATE.bot.send_message(update.message.chat.id,msg)
+    context.bot.send_message(update.message.chat.id, msg)
 
 
 def help(update, context):
@@ -473,7 +474,7 @@ def main():
     dp = updater.dispatcher  # dispatcher
 
     ###################   Handlers :
-    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler("start", start,filters=Filters._ChatType.private))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("anto", anto))
     dp.add_handler(CommandHandler("syno", syno))
