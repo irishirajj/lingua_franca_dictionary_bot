@@ -60,7 +60,6 @@ def find(update, context):
         if (hwi.__contains__('prs')):
             sound=hwi["prs"][0]
             audioname=sound["audio"]
-    subdir = ""
     if(len(audioname)!=0):
         if (audioname[0:2] == "bix"):
             subdir = "bix"
@@ -79,8 +78,8 @@ def find(update, context):
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
-                               parse_mode=telegram.ParseMode.HTML)
+    #update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+                               #parse_mode=telegram.ParseMode.HTML)
 
 
 def anto(update, context):
