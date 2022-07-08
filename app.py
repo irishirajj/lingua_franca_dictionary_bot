@@ -128,7 +128,54 @@ def find2(update, context):
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
     update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                parse_mode=telegram.ParseMode.HTML)
+def search(update, context):
+    msg = f"{update.message.text}"
+    word = msg[8:].lower()
+    merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
+    merriam_dict_list = requests.get(merriam_url).json()
+    if (len(merriam_dict_list) == 0):
+        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        return
+    if (type(merriam_dict_list[0]) == str):
+        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        return
+    merriam_dict_list_0 = merriam_dict_list[0]
+    definition = ""
+    if (merriam_dict_list_0.__contains__('shortdef')):
+        definitions = merriam_dict_list_0['shortdef']
+        definitions_len = len(definitions)
+        for i in range(definitions_len):
+            definition += definitions[i] + "; "
+    parts_of_speech = ""
+    if (merriam_dict_list_0.__contains__('fl')):
+        parts_of_speech = merriam_dict_list_0['fl']
 
+    audioname = ""
+    audiourl = ""
+    if (merriam_dict_list_0.__contains__('hwi')):
+        hwi = merriam_dict_list_0['hwi']
+        if (hwi.__contains__('prs')):
+            sound = hwi["prs"][0]['sound']
+            audioname = sound["audio"]
+    if (len(audioname) != 0):
+        if (audioname[0:2] == "bix"):
+            subdir = "bix"
+        elif (audioname[0:1] == "gg"):
+            subdir = "gg"
+        elif (audioname[0].isdigit() or audioname[0] in punctuation):
+            subdir = "number"
+        else:
+            subdir = audioname[0]
+        audiourl = f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
+
+    synonyms = synoList(word)
+    antonyms = antoList(word)
+    oneExample = giveOneExample(word)
+    head = "<b>" + word[0].upper() + word[1:] + "</b>"
+    strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+                               parse_mode=telegram.ParseMode.HTML)
 def find(update, context):
     msg = f"{update.message.text}"
     word=msg[6:].lower()
