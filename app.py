@@ -32,6 +32,13 @@ def help(update, context):
     """)
 
 
+def find(update, context):
+    msg = f"{update.message.text}"
+    word=msg[6:]
+
+    strng = u"\U0001F1EE\U0001F1F3" + " " + word
+    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+
 def anto(update, context):
     msg = f"{update.message.text}"
     word = msg[6:]
@@ -124,72 +131,6 @@ def synoList(word):
                     mysyno += synonyms[j]['text'] + ", "
             mysyno += "\n"
     return mysyno
-
-def findAudioUrl(jeasons,word):
-    audioname = jeasons[0]['hwi']['prs'][0]['sound']['audio']
-    subdir = ""
-    if (audioname[0:2] == "bix"):
-        subdir = "bix"
-    elif (audioname[0:1] == "gg"):
-        subdir = "gg"
-    elif ((audioname[0].isdigit()) or (audioname[0] in punctuation)):
-        subdir = "number"
-    else:
-        subdir = audioname[0]
-    audiourl = f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
-
-
-def find(update,context):
-    msg = f"{update.message.text}"
-    word = msg[6:]
-    word=word.lower()
-    # Access the dictionary Merriam Webster dictionary for definition and pronunciation
-    urldict = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key=1f6a028a-e36e-4742-86f9-d087462e185e"
-    #url    = f"https://dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key=06a00f95-9843-4f0f-9378-dec4f507c81b"
-    r = requests.get(urldict)
-    meandict=r.json()
-    if (len(meandict) == 0):
-        update.message.reply_text("Sorry! The word was not found in our dictionary.")
-        return
-    if (type(meandict[0]) == str):
-        update.message.reply_text("Sorry! The word was not found in our dictionary.")
-        return
-
-    #audiourl=findAudioUrl(meandict,word)
-
-    word = "<b>" + word[0].upper() + word[1:].lower() + "</b>"
-
-    shortDefinitions=meandict[0]['shortdef']
-    len_shortDefinitions = len(shortDefinitions)
-    shortdef=""
-    for i in range(len_shortDefinitions):
-        shortdef += shortDefinitions[i]+"; "
-    parts_of_speech = meandict[0]['fl']
-
-    mysyno=synoList(word)
-    ants=antoList(word)
-    example = giveOneExample(word)
-    print(mysyno)
-    update.message.reply_text("faks;ldjfa;ldjf;ldsjfaodijfo", parse_mode=telegram.ParseMode.HTML)
-    return
-    update.message.reply_text(mysyno,parse_mode=telegram.ParseMode.HTML)
-
-    update.message.reply_text(ants)
-    update.message.reply_text(example)
-    update.message.reply_text(parts_of_speech)
-    update.message.reply_text("LIFE IS A RACE and YOU ARE ANDA", parse_mode=telegram.ParseMode.HTML)
-    return
-
-
-
-    strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + shortdef + "\n\n" + u"\U0001F4DA <b>Example</b> :\n"+example
-    strng += "\n\n" + u"\U0001F4D7 <b>Synonyms</b> :\n" + mysyno + "\n\n" + u"\U0001F4D7 <b>Antonyms</b> :\n" + ants
-
-
-    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    #update.message.reply_audio(audiourl, caption=f"Pronunciation of <b>{word.lower()} </b>",
-                               #parse_mode=telegram.ParseMode.HTML)
-
 
 
 def giveOneExample(word):
