@@ -35,11 +35,10 @@ def help(update, context):
 def find(update, context):
     msg = f"{update.message.text}"
     word=msg[6:]
+    synonyms=synoList(word)
     antonyms = antoList(word)
-
-
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
-    strng = u"\U0001F1EE\U0001F1F3" + " " + head+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    strng = u"\U0001F1EE\U0001F1F3" + " " + head+ " :\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
 def anto(update, context):
