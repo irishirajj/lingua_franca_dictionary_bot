@@ -83,7 +83,7 @@ def explain(update, context):
 
 def find2(update, context):
     msg = f"{update.message.text}"
-    word=msg[6:].lower()
+    word=msg[9:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
