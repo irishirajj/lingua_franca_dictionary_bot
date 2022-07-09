@@ -44,8 +44,6 @@ def searchall(update, context):
         return
     find3(update, context)
     msg = f"{update.message.text}".lower()
-    app_id = 'fc32e4d5'
-    app_key = 'bd2a0471f2b19c491ce8cd4edeebf250'
     language = 'en-gb'
     word_id = msg[11:]
     strictMatch = 'false'
@@ -146,8 +144,6 @@ def explain(update, context):
         return
     find2(update, context)
     msg = f"{update.message.text}".lower()
-    app_id = 'fc32e4d5'
-    app_key = 'bd2a0471f2b19c491ce8cd4edeebf250'
     language = 'en-gb'
     word_id = msg[9:]
     strictMatch = 'false'
