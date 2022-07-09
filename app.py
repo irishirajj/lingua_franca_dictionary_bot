@@ -7,7 +7,7 @@ import requests
 from string import punctuation
 import telegram.ext
 
-admins = [-623259517]
+admins = [-623259517,-1001699888041]
 
 
 TOKEN = os.environ.get("TELEGRAM_ID")
@@ -25,6 +25,7 @@ def start(update, context):
 
 
 def help(update, context):
+
     update.message.reply_text("""
     The following commands are available for you:
 
@@ -38,9 +39,7 @@ def help(update, context):
     """)
 
 def searchall(update, context):
-    if update.message.chat.id in admins:
-        update.message.reply_text('You are authorized to use this BOT!')
-    else:
+    if update.message.chat.id not in admins:
         update.message.reply_text('You are not authorized to access this BOT')
         return
     find3(update, context)
@@ -90,6 +89,7 @@ def searchall(update, context):
             update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
 def find3(update, context):
+
     msg = f"{update.message.text}"
     word=msg[11:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -142,6 +142,9 @@ def find3(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
 def explain(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     find2(update, context)
     msg = f"{update.message.text}".lower()
     app_id = 'fc32e4d5'
@@ -241,6 +244,9 @@ def find2(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
 def search(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     msg = f"{update.message.text}"
     word = msg[8:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -294,6 +300,9 @@ def search(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
 def find(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     msg = f"{update.message.text}"
     word=msg[6:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -350,6 +359,9 @@ def find(update, context):
 
 
 def anto(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     msg = f"{update.message.text}"
     word = msg[6:]
     antonyms = antoList(word)
@@ -393,6 +405,9 @@ def antoList(word):
     return final_antonym_list
 
 def syno(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     msg = f"{update.message.text}"
     word = msg[6:]
     synonyms = synoList(word)
