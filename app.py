@@ -18,6 +18,7 @@ merriam_dict_key=os.environ.get("MERRIAM_DICT_KEY")
 def start(update, context):
     yourname = update.message.from_user.first_name
     msg = "Hello " + yourname + "! Welcome to Lingua Franca Dictionary Bot"
+
     #context.ext.filters.ChatType.PRIVATE.bot.send_message(update.message.chat.id, msg)
     #PRIVATE = filters.ChatType.PRIVATE
     #PRIVATE.bot.send_message(update.message.chat.id,msg)
@@ -25,7 +26,6 @@ def start(update, context):
 
 
 def help(update, context):
-
     update.message.reply_text("""
     The following commands are available for you:
 
@@ -34,7 +34,7 @@ def help(update, context):
     /find /search /look -> Find the meaning, examples, synonyms and antonyms of any word.
     /syno -> Search the synonyms of any word.
     /anto -> Search the antonyms of any word.
-    /explain /findall /searchall /lookall -> All data about a word.
+    /explain -> All data about a word.
     /contact -> For suggestions and bug reports 
     """)
 
@@ -89,7 +89,6 @@ def searchall(update, context):
             update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
 def find3(update, context):
-
     msg = f"{update.message.text}"
     word=msg[11:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -142,9 +141,6 @@ def find3(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
 def explain(update, context):
-    if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
-        return
     find2(update, context)
     msg = f"{update.message.text}".lower()
     app_id = 'fc32e4d5'
@@ -156,7 +152,7 @@ def explain(update, context):
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
     # print(r.status_code)
     if (r.status_code != 200):
-        update.message.reply_text(f"Sorry! The word{word_id} was not found in our dictionary.")
+        #update.message.reply_text("Sorry! The word was not found in our dictionary.")
         return
     testr = r.json()
     le = testr['results'][0]['lexicalEntries']
@@ -243,11 +239,7 @@ def find2(update, context):
     if (len(audiourl) != 0):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
-
 def search(update, context):
-    if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
-        return
     msg = f"{update.message.text}"
     word = msg[8:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -301,9 +293,6 @@ def search(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
 def find(update, context):
-    if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
-        return
     msg = f"{update.message.text}"
     word=msg[6:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -360,9 +349,6 @@ def find(update, context):
 
 
 def anto(update, context):
-    if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
-        return
     msg = f"{update.message.text}"
     word = msg[6:]
     antonyms = antoList(word)
@@ -406,9 +392,6 @@ def antoList(word):
     return final_antonym_list
 
 def syno(update, context):
-    if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
-        return
     msg = f"{update.message.text}"
     word = msg[6:]
     synonyms = synoList(word)
@@ -463,7 +446,6 @@ def giveOneExample(word):
     language = 'en-gb'
     word_id = word
     strictMatch = 'false'
-
     test=f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r=requests.get(test, headers = {'app_id': app_id, 'app_key': app_key})
     #print(r.status_code)
