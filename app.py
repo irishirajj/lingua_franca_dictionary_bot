@@ -46,6 +46,13 @@ def searchall(update, context):
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
     word_id = msg[11:]
+    if (word_id == "lingua franca"):
+        strng = u"\U0001F1EE\U0001F1F3" + " " + word_id[0].upper()+word_id[1:] + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
+              + "a language used for communication between groups of people who speak different languages" \
+             + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
+           + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
     strictMatch = 'false'
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
@@ -146,6 +153,13 @@ def explain(update, context):
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
     word_id = msg[9:]
+    if (word_id == "lingua franca"):
+        strng = u"\U0001F1EE\U0001F1F3" + " " + word_id[0].upper()+word_id[1:] + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
+              + "a language used for communication between groups of people who speak different languages" \
+             + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
+           + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
     strictMatch = 'false'
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
@@ -245,6 +259,13 @@ def search(update, context):
     word = msg[8:].lower()
     if (word == "meghna"):
         update.message.reply_text("You are awesome")
+        return
+    if (word == "lingua franca"):
+        strng = u"\U0001F1EE\U0001F1F3" + " " + word[0].upper()+word[1:] + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
+              + "a language used for communication between groups of people who speak different languages" \
+             + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
+           + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
