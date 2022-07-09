@@ -156,7 +156,7 @@ def explain(update, context):
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
     # print(r.status_code)
     if (r.status_code != 200):
-        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        update.message.reply_text(f"Sorry! The word{word_id} was not found in our dictionary.")
         return
     testr = r.json()
     le = testr['results'][0]['lexicalEntries']
@@ -463,6 +463,7 @@ def giveOneExample(word):
     language = 'en-gb'
     word_id = word
     strictMatch = 'false'
+
     test=f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r=requests.get(test, headers = {'app_id': app_id, 'app_key': app_key})
     #print(r.status_code)
