@@ -173,7 +173,7 @@ def explain(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word_id == "meghna"):
+    elif (word_id == "rishi"):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "A holy Hindu sage; Saint, Inspired poet" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
@@ -287,7 +287,7 @@ def search(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word == "meghna"):
+    elif (word == "rishi"):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
@@ -359,7 +359,7 @@ def find(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word == "meghna"):
+    elif (word == "rishi"):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
@@ -438,7 +438,7 @@ def anto(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word == "meghna"):
+    elif (word == "rishi"):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
@@ -500,7 +500,7 @@ def syno(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word == "meghna"):
+    elif (word == "rishi"):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
