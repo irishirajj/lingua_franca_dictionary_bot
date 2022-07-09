@@ -151,8 +151,7 @@ def explain(update, context):
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
     # print(r.status_code)
-    if (r.status_code != 200):
-
+    if (r.status_code == 400 or r.status_code == 415 or r.status_code == 404 or r.status_code == 500 ):
         update.message.reply_text(f"Sorry! The word was not found in our dictionary.\n The code is {r.status_code}")
         return
     testr = r.json()
