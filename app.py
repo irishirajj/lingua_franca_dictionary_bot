@@ -300,12 +300,11 @@ def find(update, context):
     msg = f"{update.message.text}"
     word=msg[6:].lower()
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
-    if(word=="lingua franca"):
+    if(word=="meghna"):
         strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
                 + "a language used for communication between groups of people who speak different languages" \
                 + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
                 + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
-
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
 
