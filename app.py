@@ -7,7 +7,7 @@ import requests
 from string import punctuation
 import telegram.ext
 
-admins = [-623259517,-1001699888041,-1001523164933,2060060048]
+admins = [-623259517,-1001699888041,-1001523164933,2060060048,5310284596]
 
 
 TOKEN = os.environ.get("TELEGRAM_ID")
@@ -53,8 +53,8 @@ def searchall(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word_id=="joe"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+    elif (word_id=="jo"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     elif (word_id == "rishi"):
@@ -169,8 +169,8 @@ def explain(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word_id=="joe"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+    elif (word_id == "jo"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     elif (word_id == "rishi"):
@@ -283,8 +283,8 @@ def search(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word == "joe"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+    elif (word== "jo"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     elif (word == "rishi"):
@@ -336,7 +336,7 @@ def search(update, context):
     antonyms = antoList(word)
     oneExample = giveOneExample(word)
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
-    strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
     if (len(audiourl) != 0):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
@@ -355,8 +355,8 @@ def find(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word == "joe"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+    elif (word == "jo"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     elif (word == "rishi"):
@@ -434,8 +434,8 @@ def anto(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word == "joe"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+    elif (word == "jo"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     elif (word == "rishi"):
@@ -496,8 +496,8 @@ def syno(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-    elif (word == "joe"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+    elif (word == "jo"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     elif (word == "rishi"):
