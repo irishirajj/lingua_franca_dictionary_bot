@@ -301,12 +301,13 @@ def find(update, context):
     word=msg[6:].lower()
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     if(word=="meghna"):
-        strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
-                + "a language used for communication between groups of people who speak different languages" \
-                + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
-                + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
-        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        update.message.reply_text("You are awesome")
         return
+        #strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
+          #      + "a language used for communication between groups of people who speak different languages" \
+           #     + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
+             #   + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+
 
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
