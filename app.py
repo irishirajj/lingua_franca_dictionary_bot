@@ -52,7 +52,7 @@ def searchall(update, context):
          #     + "a language used for communication between groups of people who speak different languages" \
            #  + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
          #  + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
-        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        update.message.reply_text(strng)
         return
     strictMatch = 'false'
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
