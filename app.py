@@ -34,7 +34,7 @@ def help(update, context):
     /find /search /look -> Find the meaning, examples, synonyms and antonyms of any word.
     /syno -> Search the synonyms of any word.
     /anto -> Search the antonyms of any word.
-    /explain -> All data about a word.
+    /explain /findall /searchall /lookall -> All data about a word.
     /contact -> For suggestions and bug reports 
     """)
 
@@ -156,7 +156,7 @@ def explain(update, context):
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
     # print(r.status_code)
     if (r.status_code != 200):
-        #update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        update.message.reply_text("Sorry! The word was not found in our dictionary.")
         return
     testr = r.json()
     le = testr['results'][0]['lexicalEntries']
@@ -243,6 +243,7 @@ def find2(update, context):
     if (len(audiourl) != 0):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
+
 def search(update, context):
     if update.message.chat.id not in admins:
         update.message.reply_text('You are not authorized to access this BOT')
