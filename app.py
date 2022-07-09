@@ -46,7 +46,11 @@ def searchall(update, context):
     language = 'en-gb'
     word_id = msg[11:]
     if (word_id == "lingua franca"):
-        strng = u"\U0001F1EE\U0001F1F3" + " " + word_id[0].upper()+word_id[1:] + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n"+ "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca."+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n"+ "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca."+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word_id == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3 🕉️" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "Thunder; Also used to refer the holy river Ganges; One of the best singers" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Awesome, Fantastic, Endearing"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     find3(update, context)
