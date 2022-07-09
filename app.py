@@ -42,7 +42,7 @@ def searchall(update, context):
     if update.message.chat.id not in admins:
         update.message.reply_text('You are not authorized to access this BOT')
         return
-    find3(update, context)
+    #find3(update, context)
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
     word_id = msg[11:]
