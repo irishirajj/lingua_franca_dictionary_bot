@@ -50,7 +50,15 @@ def searchall(update, context):
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     elif (word_id == "meghna"):
-        strng = u"\U0001F1EE\U0001F1F3 🕉️" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "Thunder; Also used to refer the holy river Ganges; One of the best singers" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Awesome, Fantastic, Endearing"
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word_id=="joe"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word_id == "rishi"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "A holy Hindu sage; Saint, Inspired poet" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     find3(update, context)
@@ -150,17 +158,26 @@ def explain(update, context):
     if update.message.chat.id not in admins:
         update.message.reply_text('You are not authorized to access this BOT')
         return
-    find2(update, context)
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
     word_id = msg[9:]
     if (word_id == "lingua franca"):
-        strng = u"\U0001F1EE\U0001F1F3" + " " + word_id[0].upper()+word_id[1:] + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
-              + "a language used for communication between groups of people who speak different languages" \
-             + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
-           + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n"+ "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca."+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
+    elif (word_id == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word_id=="joe"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word_id == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "A holy Hindu sage; Saint, Inspired poet" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    find2(update, context)
     strictMatch = 'false'
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
@@ -258,14 +275,20 @@ def search(update, context):
         return
     msg = f"{update.message.text}"
     word = msg[8:].lower()
-    if (word == "meghna"):
-        update.message.reply_text("You are awesome")
-        return
     if (word == "lingua franca"):
-        strng = u"\U0001F1EE\U0001F1F3" + " " + word[0].upper()+word[1:] + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
-              + "a language used for communication between groups of people who speak different languages" \
-             + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
-           + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "joe"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -324,14 +347,24 @@ def find(update, context):
         return
     msg = f"{update.message.text}"
     word=msg[6:].lower()
-    head = "<b>" + word[0].upper() + word[1:] + "</b>"
-    if(word=="meghna"):
-        update.message.reply_text("You are awesome")
+    if (word == "lingua franca"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
-        #strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
-          #      + "a language used for communication between groups of people who speak different languages" \
-           #     + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
-             #   + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+    elif (word == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "joe"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+
+    head = "<b>" + word[0].upper() + word[1:] + "</b>"
 
 
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -393,6 +426,22 @@ def anto(update, context):
         return
     msg = f"{update.message.text}"
     word = msg[6:]
+    if (word == "lingua franca"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "joe"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
     antonyms = antoList(word)
     if (len(antonyms) == 0):
         update.message.reply_text("Sorry! The word was not found in our dictionary.")
@@ -439,6 +488,22 @@ def syno(update, context):
         return
     msg = f"{update.message.text}"
     word = msg[6:]
+    if (word == "lingua franca"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "joe"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "An ordinary man; COFFEE — usually used in the phrase a cup of joe" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "He's just an average/ordinary Joe. \n She starts the day with a cup of joe." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
     synonyms = synoList(word)
     if (len(synonyms) == 0):
         update.message.reply_text("Sorry! The word was not found in our dictionary.")
