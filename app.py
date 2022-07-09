@@ -243,6 +243,9 @@ def search(update, context):
         return
     msg = f"{update.message.text}"
     word = msg[8:].lower()
+    if (word == "meghna"):
+        update.message.reply_text("You are awesome")
+
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
