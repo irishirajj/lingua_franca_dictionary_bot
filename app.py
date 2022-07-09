@@ -152,7 +152,8 @@ def explain(update, context):
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
     # print(r.status_code)
     if (r.status_code != 200):
-        #update.message.reply_text("Sorry! The word was not found in our dictionary.")
+
+        update.message.reply_text(f"Sorry! The word was not found in our dictionary.\n The code is {r.status_code}")
         return
     testr = r.json()
     le = testr['results'][0]['lexicalEntries']
