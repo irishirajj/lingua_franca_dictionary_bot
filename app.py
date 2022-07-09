@@ -7,6 +7,7 @@ import requests
 from string import punctuation
 import telegram.ext
 
+admins = [-623259517]
 
 
 TOKEN = os.environ.get("TELEGRAM_ID")
@@ -17,7 +18,6 @@ merriam_dict_key=os.environ.get("MERRIAM_DICT_KEY")
 def start(update, context):
     yourname = update.message.from_user.first_name
     msg = "Hello " + yourname + "! Welcome to Lingua Franca Dictionary Bot"
-
     #context.ext.filters.ChatType.PRIVATE.bot.send_message(update.message.chat.id, msg)
     #PRIVATE = filters.ChatType.PRIVATE
     #PRIVATE.bot.send_message(update.message.chat.id,msg)
@@ -38,6 +38,11 @@ def help(update, context):
     """)
 
 def searchall(update, context):
+    if update.message.chat.id in admins:
+        update.message.reply_text('You are authorized to use this BOT!')
+    else:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     find3(update, context)
     msg = f"{update.message.text}".lower()
     app_id = 'fc32e4d5'
