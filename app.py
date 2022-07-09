@@ -288,7 +288,7 @@ def search(update, context):
     antonyms = antoList(word)
     oneExample = giveOneExample(word)
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
-    strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + parts_of_speech + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
     if (len(audiourl) != 0):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
@@ -299,6 +299,16 @@ def find(update, context):
         return
     msg = f"{update.message.text}"
     word=msg[6:].lower()
+    head = "<b>" + word[0].upper() + word[1:] + "</b>"
+    if(word=="lingua franca"):
+        strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" \
+                + "a language used for communication between groups of people who speak different languages" \
+                + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." \
+                + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" +  + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
