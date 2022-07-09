@@ -141,6 +141,9 @@ def find3(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
 def explain(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     find2(update, context)
     msg = f"{update.message.text}".lower()
     app_id = 'fc32e4d5'
@@ -151,8 +154,7 @@ def explain(update, context):
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
     # print(r.status_code)
-    if (r.status_code == 400 or r.status_code == 415 or r.status_code == 404 or r.status_code == 500 ):
-        update.message.reply_text(f"Sorry! The word was not found in our dictionary.\n The code is {r.status_code}")
+    if (r.status_code !=200 ):
         return
     testr = r.json()
     le = testr['results'][0]['lexicalEntries']
@@ -240,6 +242,9 @@ def find2(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
 def search(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     msg = f"{update.message.text}"
     word = msg[8:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -293,6 +298,9 @@ def search(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
 def find(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     msg = f"{update.message.text}"
     word=msg[6:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
@@ -349,6 +357,9 @@ def find(update, context):
 
 
 def anto(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     msg = f"{update.message.text}"
     word = msg[6:]
     antonyms = antoList(word)
@@ -392,6 +403,9 @@ def antoList(word):
     return final_antonym_list
 
 def syno(update, context):
+    if update.message.chat.id not in admins:
+        update.message.reply_text('You are not authorized to access this BOT')
+        return
     msg = f"{update.message.text}"
     word = msg[6:]
     synonyms = synoList(word)
