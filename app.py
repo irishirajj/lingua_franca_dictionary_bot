@@ -7,7 +7,7 @@ import requests
 from string import punctuation
 import telegram.ext
 
-admins = [-623259517,-1001699888041]
+admins = [-623259517,-1001699888041,-1001523164933,2060060048]
 
 
 TOKEN = os.environ.get("TELEGRAM_ID")
