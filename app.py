@@ -7,6 +7,7 @@ import requests
 from string import punctuation
 import telegram.ext
 
+import myfile
 admins = [-623259517,-1001699888041,-1001523164933,2060060048,5310284596]
 
 
@@ -570,6 +571,9 @@ def giveOneExample(word):
         return example[0].upper()+example[1:]
     return ""
 
+def getCount(update,context):
+    count=myfile.x
+    update.message.reply_text(count)
 
 #def details(update, context):
  #   context.bot.send_message(update.message.chat.id, str(update))
@@ -599,6 +603,7 @@ def main():
     dp.add_handler(CommandHandler("findall", explain))
     dp.add_handler(CommandHandler("lookall", explain))
     dp.add_handler(CommandHandler("searchall", searchall))
+    dp.add_handler(CommandHandler("getCount", getCount))
 
     #dp.add_handler(CommandHandler("details", details))
 
