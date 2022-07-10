@@ -62,6 +62,12 @@ def searchall(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "A holy Hindu sage; Saint, Inspired poet" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
+
+    #UPDATE THE COUNT ::::::::----->>>
+    initial_count=myfile.x
+    final_count=initial_count+2
+    myfile.x=final_count
+
     find3(update, context)
     strictMatch = 'false'
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
