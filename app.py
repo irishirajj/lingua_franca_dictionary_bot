@@ -65,7 +65,7 @@ def searchall(update, context):
 
     #UPDATE THE COUNT ::::::::----->>>
     initial_count=myfile.x
-    final_count=initial_count+2
+    final_count=initial_count+3
     myfile.x=final_count
 
     find3(update, context)
@@ -161,6 +161,10 @@ def find3(update, context):
     if (len(audiourl) != 0):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
+
+
+
+
 def explain(update, context):
     if update.message.chat.id not in admins:
         update.message.reply_text('You are not authorized to access this BOT')
@@ -184,6 +188,12 @@ def explain(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "A holy Hindu sage; Saint, Inspired poet" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
+
+    # UPDATE THE COUNT ::::::::----->>>
+    initial_count = myfile.x
+    final_count = initial_count + 3
+    myfile.x = final_count
+
     find2(update, context)
     strictMatch = 'false'
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
@@ -339,6 +349,11 @@ def search(update, context):
             subdir = audioname[0]
         audiourl = f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
 
+    # UPDATE THE COUNT ::::::::----->>>
+    initial_count = myfile.x
+    final_count = initial_count + 2
+    myfile.x = final_count
+
     synonyms = synoList(word)
     antonyms = antoList(word)
     oneExample = giveOneExample(word)
@@ -414,6 +429,11 @@ def find(update, context):
         else:
             subdir = audioname[0]
         audiourl=f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
+
+    # UPDATE THE COUNT ::::::::----->>>
+    initial_count = myfile.x
+    final_count = initial_count + 2
+    myfile.x = final_count
 
 
     synonyms=synoList(word)
@@ -511,6 +531,11 @@ def syno(update, context):
         strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word[0].upper() + word[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
         update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
         return
+    # UPDATE THE COUNT ::::::::----->>>
+    initial_count = myfile.x
+    final_count = initial_count + 1
+    myfile.x = final_count
+
     synonyms = synoList(word)
     if (len(synonyms) == 0):
         update.message.reply_text("Sorry! The word was not found in our dictionary.")
