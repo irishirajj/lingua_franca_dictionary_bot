@@ -369,27 +369,11 @@ def search(update, context):
                                    parse_mode=telegram.ParseMode.HTML)
 def find(update, context):
 
-    #if update.message.chat.id not in admins:
-     #   ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
-       # update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
-        #return
-    block=mapfile.blocked
-    dict2=mapfile.dict1
-    dictkey=dict2.keys()
-    if update.message.chat.id in block:
+    if update.message.chat.id not in admins:
         ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
-    elif update.message.chat.id not in admins:
-        if update.message.chat.id in dictkey:
-            dict2[update.message.chat.id]+=1
-        else:
-            dict2.add(update.message.chat.id,1)
-        if(dict2[update.message.chat.id]==5):
-            #del mapfile.dict1[update.message.chat.id]
-            block.insert(update.message.chat.id)
-        mapfile.blocked=block
-        mapfile.dict1=dict2
+
 
 
 
