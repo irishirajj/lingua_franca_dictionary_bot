@@ -375,12 +375,13 @@ def find(update, context):
         #return
     block=mapfile.blocked
     dict2=mapfile.dict1
+    dictkey=dict2.keys()
     if update.message.chat.id in block:
         ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     elif update.message.chat.id not in admins:
-        if (dict2.__contains__(update.message.chat.id)):
+        if update.message.chat.id in dictkey:
             dict2[update.message.chat.id]+=1
         else:
             dict2.add(update.message.chat.id,1)
