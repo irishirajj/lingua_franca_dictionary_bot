@@ -315,11 +315,15 @@ def search(update, context):
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        explain(update, context)
         return
+        # update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        # return
     if (type(merriam_dict_list[0]) == str):
-        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        explain(update, context)
         return
+        # update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        # return
     merriam_dict_list_0 = merriam_dict_list[0]
     definition = ""
     if (merriam_dict_list_0.__contains__('shortdef')):
@@ -402,11 +406,15 @@ def find(update, context):
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        explain(update,context)
         return
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        #return
     if (type(merriam_dict_list[0]) == str):
-        update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        explain(update, context)
         return
+        # update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        # return
     merriam_dict_list_0= merriam_dict_list[0]
     definition=""
     if (merriam_dict_list_0.__contains__('shortdef')):
