@@ -53,7 +53,8 @@ def help(update, context):
 
 def searchall(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text("""To be used in the group Lingua franca English house, join the group <a href="https://t.me/+xeg0uDpOFfE4MTJl">LINGUA FRANCA</a> if you haven't already thanks 😊😊.""", parse_mode=telegram.ParseMode.HTML)
+        #update.message.reply_text("""To be used in the group Lingua franca English house, join the group <a href="https://t.me/+xeg0uDpOFfE4MTJl">LINGUA FRANCA</a> if you haven't already thanks 😊😊.""", parse_mode=telegram.ParseMode.HTML)
+        update.message.reply_text("To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊.",parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
