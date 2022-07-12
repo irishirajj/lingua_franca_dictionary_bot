@@ -383,8 +383,9 @@ def find(update, context):
         else:
             mapfile.dict1.add(update.message.chat.id,1)
         if(mapfile.dict1[update.message.chat.id]==5):
-            del mapfile.dict1[update.message.chat.id]
+            #del mapfile.dict1[update.message.chat.id]
             mapfile.blocked.insert(update.message.chat.id)
+
 
 
     msg = f"{update.message.text}"
