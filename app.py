@@ -41,7 +41,7 @@ def help(update, context):
 
 def searchall(update, context):
     if update.message.chat.id not in admins:
-        ans="To be used in the group Lingua franca English house, join the group"+"<a href='https://www.w3schools.com'>Visit W3Schools.com!</a>"+"if you haven't already thanks 😊😊."
+        ans="To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}".lower()
