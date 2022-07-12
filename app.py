@@ -373,18 +373,22 @@ def find(update, context):
      #   ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
        # update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         #return
-    if update.message.chat.id in mapfile.blocked:
+    block=mapfile.blocked
+    dict2=mapfile.dict1
+    if update.message.chat.id in block:
         ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     elif update.message.chat.id not in admins:
-        if (mapfile.dict1.__contains__(update.message.chat.id)):
-            mapfile.dict1[update.message.chat.id]+=1
+        if (dict2.__contains__(update.message.chat.id)):
+            dict2[update.message.chat.id]+=1
         else:
-            mapfile.dict1.add(update.message.chat.id,1)
-        if(mapfile.dict1[update.message.chat.id]==5):
+            dict2.add(update.message.chat.id,1)
+        if(dict2[update.message.chat.id]==5):
             #del mapfile.dict1[update.message.chat.id]
-            mapfile.blocked.insert(update.message.chat.id)
+            block.insert(update.message.chat.id)
+        mapfile.blocked=block
+        mapfile.dict1=dict2
 
 
 
