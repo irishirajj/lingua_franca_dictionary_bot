@@ -191,10 +191,10 @@ def search(update, context):
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     if (type(merriam_dict_list[0]) == str):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     merriam_dict_list_0 = merriam_dict_list[0]
     definition = ""
@@ -275,10 +275,10 @@ def find(update, context):
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     if (type(merriam_dict_list[0]) == str):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     merriam_dict_list_0= merriam_dict_list[0]
     definition=""
