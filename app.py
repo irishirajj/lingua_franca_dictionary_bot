@@ -275,10 +275,146 @@ def find(update, context):
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
+        msg = f"{update.message.text}".lower()
+        language = 'en-gb'
+        word_id = msg[9:]
+        if (word_id == "lingua franca"):
+            strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[
+                                                                            1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+            return
+        elif (word_id == "meghna"):
+            strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[
+                                                                            1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+            return
+        elif (word_id == "jo"):
+            strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[
+                                                                            1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+            return
+        elif (word_id == "rishi"):
+            strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[
+                                                                            1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+            return
+
+        # UPDATE THE COUNT ::::::::----->>>
+        initial_count = myfile.x
+        final_count = initial_count + 3
+        myfile.x = final_count
+
+        find2(update, context)
+        strictMatch = 'false'
+        test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+        r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+        # print(r.status_code)
+        if (r.status_code != 200):
+            return
+        testr = r.json()
+        le = testr['results'][0]['lexicalEntries']
+        for i in range(len(le)):  # i is representing the number of the lexical entry
+            le_i = le[i]
+            pos = le_i['lexicalCategory']['text']
+            entries = le_i['entries']
+            senses = entries[0]['senses']
+            for j in range(len(senses)):
+                sense_j = senses[j]
+
+                definition = ""
+                if (sense_j.__contains__('definitions')):
+                    definitions = sense_j['definitions']
+                    for k in range(len(definitions)):
+                        definition += definitions[k] + "; "
+
+                example = ""
+                if (sense_j.__contains__('examples')):
+                    examples = sense_j['examples']
+                    for k in range(len(examples)):
+                        example += str(k + 1) + ". "
+                        example += examples[k]['text'][0].upper() + examples[k]['text'][1:].lower() + "\n"
+
+                synonym = ""
+                if (sense_j.__contains__('synonyms')):
+                    synonyms = sense_j['synonyms']
+                    for k in range(len(synonyms)):
+                        synonym += synonyms[k]['text'] + "; "
+
+                word = "<b>" + msg[9].upper() + msg[10:].lower() + "</b>"
+                strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
+                update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     if (type(merriam_dict_list[0]) == str):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
+        msg = f"{update.message.text}".lower()
+        language = 'en-gb'
+        word_id = msg[9:]
+        if (word_id == "lingua franca"):
+            strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[
+                                                                            1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+            return
+        elif (word_id == "meghna"):
+            strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[
+                                                                            1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+            return
+        elif (word_id == "jo"):
+            strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[
+                                                                            1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+            return
+        elif (word_id == "rishi"):
+            strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[
+                                                                            1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n" + "A holy Hindu sage; Saint, Inspired poet" + "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" + "Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+            return
+
+        # UPDATE THE COUNT ::::::::----->>>
+        initial_count = myfile.x
+        final_count = initial_count + 3
+        myfile.x = final_count
+
+        find2(update, context)
+        strictMatch = 'false'
+        test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+        r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+        # print(r.status_code)
+        if (r.status_code != 200):
+            return
+        testr = r.json()
+        le = testr['results'][0]['lexicalEntries']
+        for i in range(len(le)):  # i is representing the number of the lexical entry
+            le_i = le[i]
+            pos = le_i['lexicalCategory']['text']
+            entries = le_i['entries']
+            senses = entries[0]['senses']
+            for j in range(len(senses)):
+                sense_j = senses[j]
+
+                definition = ""
+                if (sense_j.__contains__('definitions')):
+                    definitions = sense_j['definitions']
+                    for k in range(len(definitions)):
+                        definition += definitions[k] + "; "
+
+                example = ""
+                if (sense_j.__contains__('examples')):
+                    examples = sense_j['examples']
+                    for k in range(len(examples)):
+                        example += str(k + 1) + ". "
+                        example += examples[k]['text'][0].upper() + examples[k]['text'][1:].lower() + "\n"
+
+                synonym = ""
+                if (sense_j.__contains__('synonyms')):
+                    synonyms = sense_j['synonyms']
+                    for k in range(len(synonyms)):
+                        synonym += synonyms[k]['text'] + "; "
+
+                word = "<b>" + msg[9].upper() + msg[10:].lower() + "</b>"
+                strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
+                update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     merriam_dict_list_0= merriam_dict_list[0]
     definition=""
