@@ -11,10 +11,22 @@ import myfile
 admins = [-623259517,-1001699888041,-1001523164933,2060060048,5310284596]
 
 
+global_oxford_dict_variable=""
+
 TOKEN = os.environ.get("TELEGRAM_ID")
 app_id = os.environ.get("OXFORD_APP_ID")
 app_key = os.environ.get("OXFORD_APP_KEY")
 merriam_dict_key=os.environ.get("MERRIAM_DICT_KEY")
+
+######################### UPDATE THE APP ID's and APP KEY's from here.####################33
+#app_id_list=[]
+#app_key_list=[]
+
+######################## If only 1000 requests are left, send alert to listener
+#if(myfile.x+1000<=len(app_id_list)*1000):
+
+######################## If only 10 requests left. send message to rishi.
+
 
 def start(update, context):
     yourname = update.message.from_user.first_name
@@ -41,7 +53,7 @@ def help(update, context):
 
 def searchall(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        update.message.reply_text("""To be used in the group Lingua franca English house, join the group <a href="https://t.me/+xeg0uDpOFfE4MTJl">LINGUA FRANCA</a> if you haven't already thanks 😊😊.""", parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
@@ -65,13 +77,14 @@ def searchall(update, context):
 
     #UPDATE THE COUNT ::::::::----->>>
     initial_count=myfile.x
-    final_count=initial_count+3
+    final_count=initial_count+2
     myfile.x=final_count
 
     find3(update, context)
     strictMatch = 'false'
-    test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
-    r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+    #test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+    #r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+    r=global_oxford_dict_variable
     # print(r.status_code)
     if (r.status_code != 200):
         #update.message.reply_text("Sorry! The word was not found in our dictionary.")
@@ -167,7 +180,7 @@ def find3(update, context):
 
 def explain(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        update.message.reply_text("To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊.")
         return
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
@@ -191,13 +204,14 @@ def explain(update, context):
 
     # UPDATE THE COUNT ::::::::----->>>
     initial_count = myfile.x
-    final_count = initial_count + 3
+    final_count = initial_count + 2
     myfile.x = final_count
 
     find2(update, context)
     strictMatch = 'false'
-    test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
-    r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+    #test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+    #r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+    r=global_oxford_dict_variable
     # print(r.status_code)
     if (r.status_code !=200 ):
         return
@@ -288,7 +302,7 @@ def find2(update, context):
                                    parse_mode=telegram.ParseMode.HTML)
 def search(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        update.message.reply_text("To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊.")
         return
     msg = f"{update.message.text}"
     word = msg[8:].lower()
@@ -365,7 +379,7 @@ def search(update, context):
                                    parse_mode=telegram.ParseMode.HTML)
 def find(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        update.message.reply_text("To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊.")
         return
     msg = f"{update.message.text}"
     word=msg[6:].lower()
@@ -449,7 +463,7 @@ def find(update, context):
 
 def anto(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        update.message.reply_text("To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊.")
         return
     msg = f"{update.message.text}"
     word = msg[6:]
@@ -511,7 +525,7 @@ def antoList(word):
 
 def syno(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        update.message.reply_text("To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊.")
         return
     msg = f"{update.message.text}"
     word = msg[6:]
@@ -588,12 +602,16 @@ def giveOneExample(word):
     language = 'en-gb'
     word_id = word
     strictMatch = 'false'
+
     test=f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+
     r=requests.get(test, headers = {'app_id': app_id, 'app_key': app_key})
+    global_oxford_dict_variable = r
     #print(r.status_code)
     if(r.status_code!=200):
         return ""
-    testr=r.json()
+    testr=r.json
+
     le=testr['results'][0]['lexicalEntries']
     le_0=le[0]
     sense_0=le_0['entries'][0]['senses'][0]
