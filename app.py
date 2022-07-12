@@ -167,128 +167,7 @@ def find3(update, context):
 
 
 
-def explain(update, context):
-    if update.message.chat.id not in admins:
-        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
-        update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
-        return
-    msg = f"{update.message.text}".lower()
-    language = 'en-gb'
-    word_id = msg[9:]
-    if (word_id == "lingua franca"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n"+ "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca."+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
-        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-        return
-    elif (word_id == "meghna"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
-        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-        return
-    elif (word_id == "jo"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
-        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-        return
-    elif (word_id == "rishi"):
-        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "A holy Hindu sage; Saint, Inspired poet" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
-        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-        return
 
-    # UPDATE THE COUNT ::::::::----->>>
-    initial_count = myfile.x
-    final_count = initial_count + 3
-    myfile.x = final_count
-
-    find2(update, context)
-    strictMatch = 'false'
-    test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
-    r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
-    # print(r.status_code)
-    if (r.status_code !=200 ):
-        return
-    testr = r.json()
-    le = testr['results'][0]['lexicalEntries']
-    for i in range(len(le)):  # i is representing the number of the lexical entry
-        le_i = le[i]
-        pos = le_i['lexicalCategory']['text']
-        entries = le_i['entries']
-        senses = entries[0]['senses']
-        for j in range(len(senses)):
-            sense_j = senses[j]
-
-            definition = ""
-            if (sense_j.__contains__('definitions')):
-                definitions = sense_j['definitions']
-                for k in range(len(definitions)):
-                    definition += definitions[k] + "; "
-
-            example = ""
-            if (sense_j.__contains__('examples')):
-                examples = sense_j['examples']
-                for k in range(len(examples)):
-                    example += str(k + 1) + ". "
-                    example += examples[k]['text'][0].upper()+examples[k]['text'][1:].lower() + "\n"
-
-            synonym = ""
-            if (sense_j.__contains__('synonyms')):
-                synonyms = sense_j['synonyms']
-                for k in range(len(synonyms)):
-                    synonym += synonyms[k]['text'] + "; "
-
-            word = "<b>" + msg[9].upper() + msg[10:].lower() + "</b>"
-            strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
-            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-
-def find2(update, context):
-    msg = f"{update.message.text}"
-    word=msg[9:].lower()
-    merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
-    merriam_dict_list = requests.get(merriam_url).json()
-    if (len(merriam_dict_list) == 0):
-        return
-    if (type(merriam_dict_list[0]) == str):
-        return
-    merriam_dict_list_0= merriam_dict_list[0]
-    definition=""
-    if (merriam_dict_list_0.__contains__('shortdef')):
-        definitions=merriam_dict_list_0['shortdef']
-        definitions_len=len(definitions)
-        for i in range(definitions_len):
-            definition+=definitions[i]+"; "
-    parts_of_speech=""
-    if (merriam_dict_list_0.__contains__('fl')):
-        parts_of_speech=merriam_dict_list_0['fl']
-
-    audioname=""
-    audiourl=""
-    if (merriam_dict_list_0.__contains__('hwi')):
-        hwi = merriam_dict_list_0['hwi']
-        if (hwi.__contains__('prs')):
-            prs = hwi['prs']
-            prs_len = len(prs)
-            for i in range(prs_len):
-                if (prs[i].__contains__('sound')):
-                    sound = hwi['prs'][i]["sound"]
-                    audioname = sound["audio"]
-    if(len(audioname)!=0):
-        if (audioname[0:2] == "bix"):
-            subdir = "bix"
-        elif (audioname[0:1] == "gg"):
-            subdir = "gg"
-        elif (audioname[0].isdigit() or audioname[0] in punctuation):
-            subdir = "number"
-        else:
-            subdir = audioname[0]
-        audiourl=f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
-
-
-    synonyms=synoList(word)
-    antonyms = antoList(word)
-    oneExample=giveOneExample(word)
-    head = "<b>" + word[0].upper() + word[1:] + "</b>"
-    strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
-    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    if (len(audiourl) != 0):
-        update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
-                                   parse_mode=telegram.ParseMode.HTML)
 def search(update, context):
     if update.message.chat.id not in admins:
         ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
@@ -464,7 +343,128 @@ def find(update, context):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                parse_mode=telegram.ParseMode.HTML)
 
+def explain(update, context):
+    if update.message.chat.id not in admins:
+        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
+        return
+    msg = f"{update.message.text}".lower()
+    language = 'en-gb'
+    word_id = msg[9:]
+    if (word_id == "lingua franca"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n"+ "a language used for communication between groups of people who speak different languages" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "The international business community sees English as a lingua franca."+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word_id == "meghna"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "Thunder; Also used to refer the holy river Goddess Ganga; One of the best singers" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Thuder, Lightning, Ganges, Holy, Pretty, Beautiful, Melodious, Buddy:), Awesome, Fantastic, Endearing, Best Singer, Best Buddy,"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word_id == "jo"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper() + word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + "A sweetheart; Beloved one; Dear(often used in addressing a person)" + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + "I thought it might have been one of the servant girls with her jo.\n Oh you're a jo, she said, when I brought her breakfast in bed." + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\nSweetheart"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
+    elif (word_id == "rishi"):
+        strng = u"\U0001F1EE\U0001F1F3" + " <b>" + word_id[0].upper()+word_id[1:] + "</b>, " + "noun" + "\n\n" + u"\u2764\uFE0F <b>Definition</b> :\n"+ "A holy Hindu sage; Saint, Inspired poet" +  "\n\n" + u"\u2764\uFE0F<b>Synonyms</b> :\n" +"Rishi, IRun Man, Deep Learning, Dark Warrior, Artist, Developer, Engineer"
+        update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+        return
 
+    # UPDATE THE COUNT ::::::::----->>>
+    initial_count = myfile.x
+    final_count = initial_count + 3
+    myfile.x = final_count
+
+    find2(update, context)
+    strictMatch = 'false'
+    test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+    r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+    # print(r.status_code)
+    if (r.status_code !=200 ):
+        return
+    testr = r.json()
+    le = testr['results'][0]['lexicalEntries']
+    for i in range(len(le)):  # i is representing the number of the lexical entry
+        le_i = le[i]
+        pos = le_i['lexicalCategory']['text']
+        entries = le_i['entries']
+        senses = entries[0]['senses']
+        for j in range(len(senses)):
+            sense_j = senses[j]
+
+            definition = ""
+            if (sense_j.__contains__('definitions')):
+                definitions = sense_j['definitions']
+                for k in range(len(definitions)):
+                    definition += definitions[k] + "; "
+
+            example = ""
+            if (sense_j.__contains__('examples')):
+                examples = sense_j['examples']
+                for k in range(len(examples)):
+                    example += str(k + 1) + ". "
+                    example += examples[k]['text'][0].upper()+examples[k]['text'][1:].lower() + "\n"
+
+            synonym = ""
+            if (sense_j.__contains__('synonyms')):
+                synonyms = sense_j['synonyms']
+                for k in range(len(synonyms)):
+                    synonym += synonyms[k]['text'] + "; "
+
+            word = "<b>" + msg[9].upper() + msg[10:].lower() + "</b>"
+            strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+
+def find2(update, context):
+    msg = f"{update.message.text}"
+    word=msg[9:].lower()
+    merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
+    merriam_dict_list = requests.get(merriam_url).json()
+    if (len(merriam_dict_list) == 0):
+        return
+    if (type(merriam_dict_list[0]) == str):
+        return
+    merriam_dict_list_0= merriam_dict_list[0]
+    definition=""
+    if (merriam_dict_list_0.__contains__('shortdef')):
+        definitions=merriam_dict_list_0['shortdef']
+        definitions_len=len(definitions)
+        for i in range(definitions_len):
+            definition+=definitions[i]+"; "
+    parts_of_speech=""
+    if (merriam_dict_list_0.__contains__('fl')):
+        parts_of_speech=merriam_dict_list_0['fl']
+
+    audioname=""
+    audiourl=""
+    if (merriam_dict_list_0.__contains__('hwi')):
+        hwi = merriam_dict_list_0['hwi']
+        if (hwi.__contains__('prs')):
+            prs = hwi['prs']
+            prs_len = len(prs)
+            for i in range(prs_len):
+                if (prs[i].__contains__('sound')):
+                    sound = hwi['prs'][i]["sound"]
+                    audioname = sound["audio"]
+    if(len(audioname)!=0):
+        if (audioname[0:2] == "bix"):
+            subdir = "bix"
+        elif (audioname[0:1] == "gg"):
+            subdir = "gg"
+        elif (audioname[0].isdigit() or audioname[0] in punctuation):
+            subdir = "number"
+        else:
+            subdir = audioname[0]
+        audiourl=f"https://media.merriam-webster.com/audio/prons/en/us/mp3/{subdir}/{audioname}.mp3"
+
+
+    synonyms=synoList(word)
+    antonyms = antoList(word)
+    oneExample=giveOneExample(word)
+    head = "<b>" + word[0].upper() + word[1:] + "</b>"
+    strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
+    update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+    if (len(audiourl) != 0):
+        update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+                                   parse_mode=telegram.ParseMode.HTML)
 def anto(update, context):
     if update.message.chat.id not in admins:
         ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
