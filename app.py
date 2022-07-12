@@ -165,9 +165,6 @@ def find3(update, context):
                                    parse_mode=telegram.ParseMode.HTML)
 
 
-
-
-
 def search(update, context):
     if update.message.chat.id not in admins:
         ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
@@ -256,9 +253,6 @@ def find(update, context):
         ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
-
-
-
 
     msg = f"{update.message.text}"
     word=msg[6:].lower()
