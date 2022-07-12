@@ -168,7 +168,8 @@ def find3(update, context):
 
 def explain(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
@@ -289,7 +290,8 @@ def find2(update, context):
                                    parse_mode=telegram.ParseMode.HTML)
 def search(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}"
     word = msg[8:].lower()
@@ -366,7 +368,8 @@ def search(update, context):
                                    parse_mode=telegram.ParseMode.HTML)
 def find(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}"
     word=msg[6:].lower()
@@ -450,7 +453,8 @@ def find(update, context):
 
 def anto(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}"
     word = msg[6:]
@@ -512,7 +516,8 @@ def antoList(word):
 
 def syno(update, context):
     if update.message.chat.id not in admins:
-        update.message.reply_text('You are not authorized to access this BOT')
+        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}"
     word = msg[6:]
