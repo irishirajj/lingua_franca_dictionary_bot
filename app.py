@@ -42,7 +42,7 @@ def help(update, context):
 
 def searchall(update, context):
     if update.message.chat.id not in admins:
-        ans="To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        ans = "To be used in the group  <a href='https://t.me/+xeg0uDpOFfE4MTJl'>Lingua Franca English House</a>. Join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}".lower()
@@ -167,7 +167,7 @@ def find3(update, context):
 
 def search(update, context):
     if update.message.chat.id not in admins:
-        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        ans = "To be used in the group  <a href='https://t.me/+xeg0uDpOFfE4MTJl'>Lingua Franca English House</a>. Join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}"
@@ -246,7 +246,7 @@ def search(update, context):
 def find(update, context):
 
     if update.message.chat.id not in admins:
-        ans = "To be used in the group  <a href='https://t.me/+xeg0uDpOFfE4MTJl'>Lingua franca English house</a>. Join the group if you haven't already thanks 😊😊."
+        ans = "To be used in the group  <a href='https://t.me/+xeg0uDpOFfE4MTJl'>Lingua Franca English House</a>. Join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
 
@@ -331,7 +331,7 @@ def find(update, context):
 
 def explain(update, context):
     if update.message.chat.id not in admins:
-        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        ans = "To be used in the group  <a href='https://t.me/+xeg0uDpOFfE4MTJl'>Lingua Franca English House</a>. Join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}".lower()
@@ -453,7 +453,7 @@ def find2(update, context):
                                    parse_mode=telegram.ParseMode.HTML)
 def anto(update, context):
     if update.message.chat.id not in admins:
-        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        ans = "To be used in the group  <a href='https://t.me/+xeg0uDpOFfE4MTJl'>Lingua Franca English House</a>. Join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}"
@@ -516,7 +516,7 @@ def antoList(word):
 
 def syno(update, context):
     if update.message.chat.id not in admins:
-        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        ans = "To be used in the group  <a href='https://t.me/+xeg0uDpOFfE4MTJl'>Lingua Franca English House</a>. Join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
     msg = f"{update.message.text}"
