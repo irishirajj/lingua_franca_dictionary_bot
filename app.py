@@ -246,7 +246,7 @@ def search(update, context):
 def find(update, context):
 
     if update.message.chat.id not in admins:
-        ans = "To be used in the group Lingua franca English house, join the group if you haven't already thanks 😊😊."
+        ans = "To be used in the group Lingua franca English house, <a href='https://www.google.com/'>Google</a> join the group if you haven't already thanks 😊😊."
         update.message.reply_text(ans, parse_mode=telegram.ParseMode.HTML)
         return
 
