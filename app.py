@@ -70,13 +70,15 @@ def searchall(update, context):
     final_count=initial_count+3
     myfile.x=final_count
 
-    find3(update, context)
+    isFound=1
+    find3(update, context,isFound)
     strictMatch = 'false'
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
     # print(r.status_code)
     if (r.status_code != 200):
-        #update.message.reply_text("Sorry! The word was not found in our dictionary.")
+        if(isFound==0):
+            update.message.reply_text("Sorry! The word was not found in our dictionary.")
         return
     testr = r.json()
     le = testr['results'][0]['lexicalEntries']
@@ -111,14 +113,16 @@ def searchall(update, context):
             strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
             update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
-def find3(update, context):
+def find3(update, context,isFound):
     msg = f"{update.message.text}"
     word=msg[11:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
+        isFound=0
         return
     if (type(merriam_dict_list[0]) == str):
+        isFound=0
         return
     merriam_dict_list_0= merriam_dict_list[0]
     definition=""
@@ -191,10 +195,12 @@ def search(update, context):
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
+        searchexplain(update,context)
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     if (type(merriam_dict_list[0]) == str):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
+        searchexplain(update, context)
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     merriam_dict_list_0 = merriam_dict_list[0]
     definition = ""
@@ -243,6 +249,56 @@ def search(update, context):
     if (len(audiourl) != 0):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                    parse_mode=telegram.ParseMode.HTML)
+
+# We will make a function which will give results if the search got empty due to the word not in merriam
+def searchexplain(update,context):
+    msg = f"{update.message.text}".lower()
+    language = 'en-gb'
+    word_id = msg[8:]
+    # UPDATE THE COUNT ::::::::----->>>
+    initial_count = myfile.x
+    final_count = initial_count + 3
+    myfile.x = final_count
+    #find2(update, context)
+    strictMatch = 'false'
+    test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+    r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+    # print(r.status_code)
+    if (r.status_code != 200):
+        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        return
+    testr = r.json()
+    le = testr['results'][0]['lexicalEntries']
+    for i in range(len(le)):  # i is representing the number of the lexical entry
+        le_i = le[i]
+        pos = le_i['lexicalCategory']['text']
+        entries = le_i['entries']
+        senses = entries[0]['senses']
+        for j in range(len(senses)):
+            sense_j = senses[j]
+            definition = ""
+            if (sense_j.__contains__('definitions')):
+                definitions = sense_j['definitions']
+                for k in range(len(definitions)):
+                    definition += definitions[k] + "; "
+            example = ""
+            if (sense_j.__contains__('examples')):
+                examples = sense_j['examples']
+                for k in range(len(examples)):
+                    example += str(k + 1) + ". "
+                    example += examples[k]['text'][0].upper() + examples[k]['text'][1:].lower() + "\n"
+
+            synonym = ""
+            if (sense_j.__contains__('synonyms')):
+                synonyms = sense_j['synonyms']
+                for k in range(len(synonyms)):
+                    synonym += synonyms[k]['text'] + "; "
+
+            word = "<b>" + msg[9].upper() + msg[10:].lower() + "</b>"
+            strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
+
+
 def find(update, context):
     if update.message.chat.id not in admins:
         ans = "To be used in the group \n Lingua Franca English House \n(<a href='https://t.me/+xeg0uDpOFfE4MTJl'>t.me/+xeg0uDpOFfE4MTJl </a>). \nJoin the group if you haven't already thanks 😊😊."
@@ -274,10 +330,12 @@ def find(update, context):
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
+        findexplain(update,context)
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     if (type(merriam_dict_list[0]) == str):
-        update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
+        findexplain(update,context)
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
     merriam_dict_list_0= merriam_dict_list[0]
     definition=""
@@ -327,6 +385,52 @@ def find(update, context):
     if(len(audiourl)!=0):
         update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
                                parse_mode=telegram.ParseMode.HTML)
+def findexplain(update,context):
+    msg = f"{update.message.text}".lower()
+    language = 'en-gb'
+    word_id = msg[6:]
+    # UPDATE THE COUNT ::::::::----->>>
+    initial_count = myfile.x
+    final_count = initial_count + 3
+    myfile.x = final_count
+    #find2(update, context)
+    strictMatch = 'false'
+    test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
+    r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
+    # print(r.status_code)
+    if (r.status_code != 200):
+        update.message.reply_text("Sorry! The word was not found in our Dictionary.")
+        return
+    testr = r.json()
+    le = testr['results'][0]['lexicalEntries']
+    for i in range(len(le)):  # i is representing the number of the lexical entry
+        le_i = le[i]
+        pos = le_i['lexicalCategory']['text']
+        entries = le_i['entries']
+        senses = entries[0]['senses']
+        for j in range(len(senses)):
+            sense_j = senses[j]
+            definition = ""
+            if (sense_j.__contains__('definitions')):
+                definitions = sense_j['definitions']
+                for k in range(len(definitions)):
+                    definition += definitions[k] + "; "
+            example = ""
+            if (sense_j.__contains__('examples')):
+                examples = sense_j['examples']
+                for k in range(len(examples)):
+                    example += str(k + 1) + ". "
+                    example += examples[k]['text'][0].upper() + examples[k]['text'][1:].lower() + "\n"
+
+            synonym = ""
+            if (sense_j.__contains__('synonyms')):
+                synonyms = sense_j['synonyms']
+                for k in range(len(synonyms)):
+                    synonym += synonyms[k]['text'] + "; "
+
+            word = "<b>" + msg[9].upper() + msg[10:].lower() + "</b>"
+            strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
+            update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
 def explain(update, context):
     if update.message.chat.id not in admins:
@@ -358,12 +462,15 @@ def explain(update, context):
     final_count = initial_count + 3
     myfile.x = final_count
 
-    find2(update, context)
+    isFound=1
+    find2(update, context,isFound)
     strictMatch = 'false'
     test = f"https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/{word_id}?strictMatch=false"
     r = requests.get(test, headers={'app_id': app_id, 'app_key': app_key})
     # print(r.status_code)
     if (r.status_code !=200 ):
+        if (isFound==0):
+            update.message.reply_text("Sorry! The word was not found in our Dictionary.")
         return
     testr = r.json()
     le = testr['results'][0]['lexicalEntries']
@@ -398,14 +505,16 @@ def explain(update, context):
             strng = u"\U0001F1EE\U0001F1F3" + " " + word + " ," + pos + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Examples</b> :\n" + example + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonym
             update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
 
-def find2(update, context):
+def find2(update, context,isFound):
     msg = f"{update.message.text}"
     word=msg[9:].lower()
     merriam_url = f"https://dictionaryapi.com/api/v3/references/collegiate/json/{word}?key={merriam_dict_key}"
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
+        isFound=0
         return
     if (type(merriam_dict_list[0]) == str):
+        isFound=0
         return
     merriam_dict_list_0= merriam_dict_list[0]
     definition=""
