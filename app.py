@@ -9,8 +9,8 @@ import telegram.ext
 
 import myfile
 import mapfile
-admins = [-623259517,-1001699888041,-1001523164933,5310284596]
-# ,2060060048
+admins = [2060060048,-623259517,-1001699888041,-1001523164933,5310284596]
+# ,
 
 TOKEN = os.environ.get("TELEGRAM_ID")
 app_id = os.environ.get("OXFORD_APP_ID")
