@@ -164,9 +164,9 @@ def find3(update, context,isFound):
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    if (len(audiourl) != 0):
-        update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
-                                   parse_mode=telegram.ParseMode.HTML)
+    #if (len(audiourl) != 0):
+    #    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+    #                               parse_mode=telegram.ParseMode.HTML)
 
 
 def search(update, context):
@@ -246,9 +246,9 @@ def search(update, context):
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head + ", " + "noun" + "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition + "\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample + "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms + "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    if (len(audiourl) != 0):
-        update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
-                                   parse_mode=telegram.ParseMode.HTML)
+    #if (len(audiourl) != 0):
+    #    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+    #                               parse_mode=telegram.ParseMode.HTML)
 
 # We will make a function which will give results if the search got empty due to the word not in merriam
 def searchexplain(update,context):
@@ -331,12 +331,14 @@ def find(update, context):
     merriam_dict_list = requests.get(merriam_url).json()
     if (len(merriam_dict_list) == 0):
         findexplain(update,context)
-        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
+        #return
     if (type(merriam_dict_list[0]) == str):
         findexplain(update,context)
-        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
         return
+        #update.message.reply_text("Sorry! The word was not found in our Dictionary. You can try using the explain function :)")
+        #return
     merriam_dict_list_0= merriam_dict_list[0]
     definition=""
     if (merriam_dict_list_0.__contains__('shortdef')):
@@ -382,9 +384,9 @@ def find(update, context):
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    if(len(audiourl)!=0):
-        update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
-                               parse_mode=telegram.ParseMode.HTML)
+    #if(len(audiourl)!=0):
+    #    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+    #                           parse_mode=telegram.ParseMode.HTML)
 def findexplain(update,context):
     msg = f"{update.message.text}".lower()
     language = 'en-gb'
@@ -556,9 +558,9 @@ def find2(update, context,isFound):
     head = "<b>" + word[0].upper() + word[1:] + "</b>"
     strng = u"\U0001F1EE\U0001F1F3" + " " + head+", "+parts_of_speech+ "\n\n" + u"\U0001F4DA <b>Definition</b> :\n" + definition +"\n\n" + u"\U0001F4DA <b>Example</b> :\n" + oneExample+ "\n\n" + u"\U0001F4DA <b>Synonyms</b> :\n" + synonyms+ "\n\n" + u"\U0001F4DA <b>Antonyms</b> :\n" + antonyms
     update.message.reply_text(strng, parse_mode=telegram.ParseMode.HTML)
-    if (len(audiourl) != 0):
-        update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
-                                   parse_mode=telegram.ParseMode.HTML)
+    #if (len(audiourl) != 0):
+    #    update.message.reply_audio(audiourl, caption=f"Pronunciation of {head}",
+    #                               parse_mode=telegram.ParseMode.HTML)
 def anto(update, context):
     if update.message.chat.id not in admins:
         ans = "To be used in the group \n Lingua Franca English House \n(<a href='https://t.me/+xeg0uDpOFfE4MTJl'>t.me/+xeg0uDpOFfE4MTJl </a>). \nJoin the group if you haven't already thanks 😊😊."
